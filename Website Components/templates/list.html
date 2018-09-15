@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <table border = 1>
+         <thead>
+            <td>index</td>
+            <td>PLAYER</td>
+            <td>POSITION</td>
+            <td>TEAM</td>
+            <td>PTS</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["index"]}}</td>
+               <td>{{row["PLAYER"]}}</td>
+               <td> {{ row["POSITION"]}}</td>
+               <td>{{row['TEAM']}}</td>	
+               <td>{{row['PTS']}}</td>	
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+      
+   </body>
+</html>
