@@ -1,0 +1,33 @@
+,team,over_under,team_abbr,binned,score_sentiment,color
+0,Cleveland Browns,49.0,Cle,"(48.208, 50.854]",Good,blue
+1,New Orleans Saints,49.0,NO,"(48.208, 50.854]",Good,blue
+2,Indianapolis Colts,48.5,Ind,"(48.208, 50.854]",Good,blue
+3,Washington Redskins,48.5,Wsh,"(48.208, 50.854]",Good,blue
+4,Minnesota Vikings,46.5,Min,"(44.542, 48.208]",Neutral,grey
+5,Green Bay Packers,46.5,GB,"(44.542, 48.208]",Neutral,grey
+6,Los Angeles Chargers,43.0,LAC,"(42.0, 43.521]",Terrible,red
+7,Buffalo Bills,43.0,Buf,"(42.0, 43.521]",Terrible,red
+8,Kansas City Chiefs,53.5,KC,"(50.854, 54.0]",Awesome,green
+9,Pittsburgh Steelers,53.5,Pit,"(50.854, 54.0]",Awesome,green
+10,Houston Texans,43.5,Hou,"(42.0, 43.521]",Terrible,red
+11,Tennessee Titans,43.5,Ten,"(42.0, 43.521]",Terrible,red
+12,Philadelphia Eagles,44.0,Phi,"(43.521, 44.542]",Concerned,yellow
+13,Tampa Bay Buccaneers,44.0,TB,"(43.521, 44.542]",Concerned,yellow
+14,Carolina Panthers,44.5,Car,"(43.521, 44.542]",Concerned,yellow
+15,Atlanta Falcons,44.5,Atl,"(43.521, 44.542]",Concerned,yellow
+16,Miami Dolphins,43.0,Mia,"(42.0, 43.521]",Terrible,red
+17,New York Jets,43.0,NYJ,"(42.0, 43.521]",Terrible,red
+18,Arizona Cardinals,44.5,Ari,"(43.521, 44.542]",Concerned,yellow
+19,Los Angeles Rams,44.5,LAR,"(43.521, 44.542]",Concerned,yellow
+20,Detroit Lions,48.5,Det,"(48.208, 50.854]",Good,blue
+21,San Francisco 49ers,48.5,SF,"(48.208, 50.854]",Good,blue
+22,New England Patriots,45.5,NE,"(44.542, 48.208]",Neutral,grey
+23,Jacksonville Jaguars,45.5,Jac,"(44.542, 48.208]",Neutral,grey
+24,Oakland Raiders,45.5,Oak,"(44.542, 48.208]",Neutral,grey
+25,Denver Broncos,45.5,Den,"(44.542, 48.208]",Neutral,grey
+26,New York Giants,42.5,NYG,"(42.0, 43.521]",Terrible,red
+27,Dallas Cowboys,42.5,Dal,"(42.0, 43.521]",Terrible,red
+28,Seattle Seahawks,43.0,Sea,"(42.0, 43.521]",Terrible,red
+29,Chicago Bears,43.0,Chi,"(42.0, 43.521]",Terrible,red
+30,Cincinnati Bengals,44.0,Cin,"(43.521, 44.542]",Concerned,yellow
+31,Baltimore Ravens,44.0,Bal,"(43.521, 44.542]",Concerned,yellow
