@@ -1,0 +1,201 @@
+,number,player,compound_score,binned,expert_sentiment,color
+0,1,Cam Newton,-0.22355,"(-0.5, -0.02]",Concerned,yellow
+1,2,Drew Brees,0.168066667,"(0.02, 0.5]",Good,blue
+2,3,Aaron Rodgers,0.062882979,"(0.02, 0.5]",Good,blue
+3,4,Alex Smith,0.0852,"(0.02, 0.5]",Good,blue
+4,5,Ben Roethlisberger,0.041513043,"(0.02, 0.5]",Good,blue
+5,6,Tom Brady,0.003983333,"(-0.02, 0.02]",Neutral,grey
+6,7,Patrick Mahomes,0.061961765,"(0.02, 0.5]",Good,blue
+7,8,Kirk Cousins,0.070816667,"(0.02, 0.5]",Good,blue
+8,9,Andrew Luck,0.235783333,"(0.02, 0.5]",Good,blue
+9,10,Russell Wilson,0.098963636,"(0.02, 0.5]",Good,blue
+10,11,Deshaun Watson,0.048884211,"(0.02, 0.5]",Good,blue
+11,12,Philip Rivers,0,"(-0.02, 0.02]",Neutral,grey
+12,13,Matthew Stafford,,,null,
+13,14,Matt Ryan,0.03695,"(0.02, 0.5]",Good,blue
+14,15,Jimmy Garoppolo,0.302833333,"(0.02, 0.5]",Good,blue
+15,16,Tyrod Taylor,0.278666667,"(0.02, 0.5]",Good,blue
+16,17,Jared Goff,0.145116667,"(0.02, 0.5]",Good,blue
+17,18,Nick Foles,0.33745,"(0.02, 0.5]",Good,blue
+18,19,Ryan Fitzpatrick,0.042454545,"(0.02, 0.5]",Good,blue
+19,20,Mitchell Trubisky,-0.1806,"(-0.5, -0.02]",Concerned,yellow
+20,21,Case Keenum,0.07342,"(0.02, 0.5]",Good,blue
+21,22,Marcus Mariota,0.122012,"(0.02, 0.5]",Good,blue
+22,23,Dak Prescott,0,"(-0.02, 0.02]",Neutral,grey
+23,24,Derek Carr,-0.0432,"(-0.5, -0.02]",Concerned,yellow
+24,25,Blake Bortles,0.284466667,"(0.02, 0.5]",Good,blue
+25,26,Andy Dalton,0.214572727,"(0.02, 0.5]",Good,blue
+26,27,Eli Manning,0.114666667,"(0.02, 0.5]",Good,blue
+27,28,Ryan Tannehill,-0.33525,"(-0.5, -0.02]",Concerned,yellow
+28,29,Alvin Kamara,-0.09417,"(-0.5, -0.02]",Concerned,yellow
+29,30,Todd Gurley,0.123336364,"(0.02, 0.5]",Good,blue
+30,31,Ezekiel Elliott,0.296,"(0.02, 0.5]",Good,blue
+31,32,David Johnson,0.0807625,"(0.02, 0.5]",Good,blue
+32,33,Saquon Barkley,-0.0594,"(-0.5, -0.02]",Concerned,yellow
+33,34,Melvin Gordon,0.04701,"(0.02, 0.5]",Good,blue
+34,35,James Conner,0.047984615,"(0.02, 0.5]",Good,blue
+35,36,Christian McCaffrey,0.114318182,"(0.02, 0.5]",Good,blue
+36,37,Kareem Hunt,-0.011,"(-0.02, 0.02]",Neutral,grey
+37,38,Dalvin Cook,-0.390755556,"(-0.5, -0.02]",Concerned,yellow
+38,39,Jordan Howard,0.0331,"(0.02, 0.5]",Good,blue
+39,40,Joe Mixon,-0.10477931,"(-0.5, -0.02]",Concerned,yellow
+40,41,Leonard Fournette,0.051121875,"(0.02, 0.5]",Good,blue
+41,42,Adrian Peterson,0.137922222,"(0.02, 0.5]",Good,blue
+42,43,Devonta Freeman,0.273834483,"(0.02, 0.5]",Good,blue
+43,44,LeSean McCoy,-0.17529375,"(-0.5, -0.02]",Concerned,yellow
+44,45,Lamar Miller,,,null,
+45,46,Dion Lewis,0.3795,"(0.02, 0.5]",Good,blue
+46,47,Jay Ajayi,-0.042063158,"(-0.5, -0.02]",Concerned,yellow
+47,48,Alex Collins,0.225672727,"(0.02, 0.5]",Good,blue
+48,49,Kenyan Drake,0,"(-0.02, 0.02]",Neutral,grey
+49,50,Royce Freeman,0.52,"(0.5, 1.0]",Awesome,green
+50,51,Isaiah Crowell,,,null,
+51,52,Derrick Henry,0.45855,"(0.02, 0.5]",Good,blue
+52,53,Chris Thompson,0.11988,"(0.02, 0.5]",Good,blue
+53,54,Carlos Hyde,-0.1037,"(-0.5, -0.02]",Concerned,yellow
+54,55,Jamaal Williams,0.1806,"(0.02, 0.5]",Good,blue
+55,56,Marshawn Lynch,0,"(-0.02, 0.02]",Neutral,grey
+56,57,Rex Burkhead,0.193036842,"(0.02, 0.5]",Good,blue
+57,58,Chris Carson,0.006666667,"(-0.02, 0.02]",Neutral,grey
+58,59,Peyton Barber,0,"(-0.02, 0.02]",Neutral,grey
+59,60,Bilal Powell,0.7088,"(0.5, 1.0]",Awesome,green
+60,61,Tevin Coleman,0.185347619,"(0.02, 0.5]",Good,blue
+61,62,Matt Breida,0.23646,"(0.02, 0.5]",Good,blue
+62,63,Alfred Morris,-0.1837,"(-0.5, -0.02]",Concerned,yellow
+63,64,Duke Johnson,-0.42735,"(-0.5, -0.02]",Concerned,yellow
+64,65,James White,0.04745,"(0.02, 0.5]",Good,blue
+65,66,Kerryon Johnson,,,null,
+66,67,Phillip Lindsay,0.436723077,"(0.02, 0.5]",Good,blue
+67,68,Tarik Cohen,-0.257566667,"(-0.5, -0.02]",Concerned,yellow
+68,69,Marlon Mack,0.21075,"(0.02, 0.5]",Good,blue
+69,70,Jordan Wilkins,0.223833333,"(0.02, 0.5]",Good,blue
+70,71,Rashaad Penny,0.19195,"(0.02, 0.5]",Good,blue
+71,72,Ty Montgomery,,,null,
+72,73,Sony Michel,0.132135294,"(0.02, 0.5]",Good,blue
+73,74,TJ Yeldon,0.1204,"(0.02, 0.5]",Good,blue
+74,75,Theo Riddick,-0.296,"(-0.5, -0.02]",Concerned,yellow
+75,76,Austin Ekeler,-0.0516,"(-0.5, -0.02]",Concerned,yellow
+76,77,Darren Sproles,0,"(-0.02, 0.02]",Neutral,grey
+77,78,Javorius Allen,0.113633333,"(0.02, 0.5]",Good,blue
+78,79,Frank Gore,0.146475,"(0.02, 0.5]",Good,blue
+79,80,CJ Anderson,,,null,
+80,81,Latavius Murray,,,null,
+81,82,Corey Clement,0,"(-0.02, 0.02]",Neutral,grey
+82,83,Nyheim Hines,0.4019,"(0.02, 0.5]",Good,blue
+83,84,Giovani Bernard,0.6369,"(0.5, 1.0]",Awesome,green
+84,85,Jalen Richard,,,null,
+85,86,LeGarrette Blount,-0.100766667,"(-0.5, -0.02]",Concerned,yellow
+86,87,Doug Martin,,,null,
+87,88,Antonio Brown,-0.046625,"(-0.5, -0.02]",Concerned,yellow
+88,89,Michael Thomas,0.0767,"(0.02, 0.5]",Good,blue
+89,90,DeAndre Hopkins,0.208026316,"(0.02, 0.5]",Good,blue
+90,91,Julio Jones,0.042,"(0.02, 0.5]",Good,blue
+91,92,Odell Beckham,0.27682,"(0.02, 0.5]",Good,blue
+92,93,Keenan Allen,0,"(-0.02, 0.02]",Neutral,grey
+93,94,AJ Green,0.0516,"(0.02, 0.5]",Good,blue
+94,95,Tyreek Hill,0.0377125,"(0.02, 0.5]",Good,blue
+95,96,Adam Thielen,0,"(-0.02, 0.02]",Neutral,grey
+96,97,TY Hilton,,,null,
+97,98,Mike Evans,-0.0592,"(-0.5, -0.02]",Concerned,yellow
+98,99,Davante Adams,-0.009438095,"(-0.02, 0.02]",Neutral,grey
+99,100,Stefon Diggs,0.0023625,"(-0.02, 0.02]",Neutral,grey
+100,101,Demaryius Thomas,0.190633333,"(0.02, 0.5]",Good,blue
+101,102,Emmanuel Sanders,0.201466667,"(0.02, 0.5]",Good,blue
+102,103,JuJu Smith-Schuster,-0.06364,"(-0.5, -0.02]",Concerned,yellow
+103,104,Golden Tate,0,"(-0.02, 0.02]",Neutral,grey
+104,105,Allen Robinson,0.203285714,"(0.02, 0.5]",Good,blue
+105,106,Larry Fitzgerald,-0.013971429,"(-0.02, 0.02]",Neutral,grey
+106,107,Jarvis Landry,-0.05003,"(-0.5, -0.02]",Concerned,yellow
+107,108,Josh Gordon,0.044816667,"(0.02, 0.5]",Good,blue
+108,109,Amari Cooper,0.2646375,"(0.02, 0.5]",Good,blue
+109,110,Corey Davis,0.0889625,"(0.02, 0.5]",Good,blue
+110,111,Robert Woods,,,null,
+111,112,Marvin Jones,0.076414286,"(0.02, 0.5]",Good,blue
+112,113,Brandin Cooks,0.3513,"(0.02, 0.5]",Good,blue
+113,114,Marquise Goodwin,0.0079,"(-0.02, 0.02]",Neutral,grey
+114,115,Nelson Agholor,0.1101,"(0.02, 0.5]",Good,blue
+115,116,Kenny Stills,0.170866667,"(0.02, 0.5]",Good,blue
+116,117,Chris Hogan,-0.18665,"(-0.5, -0.02]",Concerned,yellow
+117,118,Michael Crabtree,0.28235,"(0.02, 0.5]",Good,blue
+118,119,Cooper Kupp,0,"(-0.02, 0.02]",Neutral,grey
+119,120,Randall Cobb,0,"(-0.02, 0.02]",Neutral,grey
+120,121,Jamison Crowder,0,"(-0.02, 0.02]",Neutral,grey
+121,122,Robby Anderson,0,"(-0.02, 0.02]",Neutral,grey
+122,123,Tyler Lockett,-0.098783333,"(-0.5, -0.02]",Concerned,yellow
+123,124,Devin Funchess,0.158433333,"(0.02, 0.5]",Good,blue
+124,125,Kenny Golladay,0.10415,"(0.02, 0.5]",Good,blue
+125,126,Will Fuller,0.256353333,"(0.02, 0.5]",Good,blue
+126,127,Pierre Garcon,0.3056,"(0.02, 0.5]",Good,blue
+127,128,Sammy Watkins,0.132233333,"(0.02, 0.5]",Good,blue
+128,129,Sterling Shepard,0.31845,"(0.02, 0.5]",Good,blue
+129,130,Ted Ginn,0.051633333,"(0.02, 0.5]",Good,blue
+130,131,Jordy Nelson,0.2202,"(0.02, 0.5]",Good,blue
+131,132,Kelvin Benjamin,0.4588,"(0.02, 0.5]",Good,blue
+132,133,Quincy Enunwa,0.191272727,"(0.02, 0.5]",Good,blue
+133,134,Josh Doctson,,,null,
+134,135,Chris Godwin,0.056666667,"(0.02, 0.5]",Good,blue
+135,136,Mike Williams,0,"(-0.02, 0.02]",Neutral,grey
+136,137,Mohamed Sanu,,,null,
+137,138,Keelan Cole,0.160594118,"(0.02, 0.5]",Good,blue
+138,139,Mike Wallace,-0.197786667,"(-0.5, -0.02]",Concerned,yellow
+139,140,Geronimo Allison,,,null,
+140,141,DeSean Jackson,0.103367857,"(0.02, 0.5]",Good,blue
+141,142,Allen Hurns,0,"(-0.02, 0.02]",Neutral,grey
+142,143,Brandon Marshall,0.1356,"(0.02, 0.5]",Good,blue
+143,144,Ryan Grant,0.3612,"(0.02, 0.5]",Good,blue
+144,145,Paul Richardson,-0.0537,"(-0.5, -0.02]",Concerned,yellow
+145,146,Tyrell Williams,,,null,
+146,147,Rob Gronkowski,-0.4215,"(-0.5, -0.02]",Concerned,yellow
+147,148,Travis Kelce,-0.038016667,"(-0.5, -0.02]",Concerned,yellow
+148,149,Zach Ertz,-0.07955,"(-0.5, -0.02]",Concerned,yellow
+149,150,Jordan Reed,0.23315,"(0.02, 0.5]",Good,blue
+150,151,Kyle Rudolph,0,"(-0.02, 0.02]",Neutral,grey
+151,152,Jack Doyle,-0.156225,"(-0.5, -0.02]",Concerned,yellow
+152,153,Evan Engram,,,null,
+153,154,Jimmy Graham,,,null,
+154,155,Trey Burton,,,null,
+155,156,George Kittle,0.1822,"(0.02, 0.5]",Good,blue
+156,157,Jared Cook,0.311033333,"(0.02, 0.5]",Good,blue
+157,158,David Njoku,,,null,
+158,159,Benjamin Watson,,,null,
+159,160,Tyler Eifert,0.2716,"(0.02, 0.5]",Good,blue
+160,161,Antonio Gates,,,null,
+161,162,Austin Seferian-Jenkins,-0.2263,"(-0.5, -0.02]",Concerned,yellow
+162,163,Charles Clay,0,"(-0.02, 0.02]",Neutral,grey
+163,164,Ricky Seals-Jones,0.0476,"(0.02, 0.5]",Good,blue
+164,165,Eric Ebron,-0.084916667,"(-0.5, -0.02]",Concerned,yellow
+165,166,OJ Howard,-0.3034,"(-0.5, -0.02]",Concerned,yellow
+166,167,Vance McDonald,0.014666667,"(-0.02, 0.02]",Neutral,grey
+167,168,Cameron Brate,,,null,
+168,169,Austin Hooper,0,"(-0.02, 0.02]",Neutral,grey
+169,170,Will Dissly,0,"(-0.02, 0.02]",Neutral,grey
+170,171,Jonnu Smith,0.226666667,"(0.02, 0.5]",Good,blue
+171,172,Ian Thomas,,,null,
+172,173,Jake Butt,,,null,
+173,174,Mike Gesicki,,,null,
+174,175,Ryan Griffin,,,null,
+175,176,Geoff Swaim,,,null,
+176,177,Greg Zuerlein,-0.1232,"(-0.5, -0.02]",Concerned,yellow
+177,178,Justin Tucker,,,null,
+178,179,Stephen Gostkowski,,,null,
+179,180,Matt Bryant,0.2023,"(0.02, 0.5]",Good,blue
+180,181,Chris Boswell,,,null,
+181,182,Robbie Gould,-0.5467,"(-1.0, -0.5]",Terrible,red
+182,183,Wil Lutz,,,null,
+183,184,Jake Elliott,0.7717,"(0.5, 1.0]",Awesome,green
+184,185,Harrison Butker,0.7717,"(0.5, 1.0]",Awesome,green
+185,186,Matt Prater,,,null,
+186,187,Adam Vinatieri,,,null,
+187,188,Graham Gano,,,null,
+188,189,Mason Crosby,,,null,
+189,190,Ryan Succop,,,null,
+190,191,Dustin Hopkins,,,null,
+191,192,Brandon McManus,,,null,
+192,193,Cody Parkey,-0.3182,"(-0.5, -0.02]",Concerned,yellow
+193,194,Daniel Carlson,0.16794,"(0.02, 0.5]",Good,blue
+194,195,Josh Lambo,,,null,
+195,196,Ka'imi Fairbairn,,,null,
+196,197,Sebastian Janikowski,,,null,
+197,198,Caleb Sturgis,0,"(-0.02, 0.02]",Neutral,grey
+198,199,Chandler Catanzaro,,,null,
+199,200,Jason Myers,,,null,
