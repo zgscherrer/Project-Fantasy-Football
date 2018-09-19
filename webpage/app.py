@@ -28,14 +28,17 @@ week1_ppr_projections = Base.classes.week1_ppr_projections
 # Samples = Base.classes.table2_name
 
 
+
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
 
-@app.route("/tabledata")
-def tabledata():
+
+# Josh
+@app.route("/data")
+def data():
     # """Return a table on ufo template"""
     #get week 1 projections
     stmt = """
@@ -48,6 +51,66 @@ def tabledata():
     df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
     print(df_week1_ppr_projections.head())
     return render_template("data.html")
+
+
+
+
+# Connor
+@app.route("/tweet")
+def tweet():
+    # """Return a table on ufo template"""
+    #get week 1 projections
+    stmt = """
+    SELECT *
+    FROM week2_ppr_projections
+    """
+
+    # stmt = db.session.query(week1_ppr_projections).statement
+
+    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
+    print(df_week1_ppr_projections.head())
+    return render_template("tweet.html")
+
+
+
+
+
+# Mike
+@app.route("/input")
+def input():
+    # """Return a table on ufo template"""
+    #get week 1 projections
+    stmt = """
+    SELECT *
+    FROM week2_ppr_projections
+    """
+
+    # stmt = db.session.query(week1_ppr_projections).statement
+
+    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
+    print(df_week1_ppr_projections.head())
+    return render_template("input.html")
+
+
+
+
+# Zach
+@app.route("/compare")
+def compare():
+    # """Return a table on ufo template"""
+    #get week 1 projections
+    stmt = """
+    SELECT *
+    FROM week2_ppr_projections
+    """
+
+    # stmt = db.session.query(week1_ppr_projections).statement
+
+    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
+    print(df_week1_ppr_projections.head())
+    return render_template("compare.html")
+
+
 
 
 
