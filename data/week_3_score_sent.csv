@@ -1,0 +1,33 @@
+,team,over_under,team_abbr,binned,score_sentiment
+0,Arizona Cardinals,37.5,Ari,"(37.0, 40.146]",Terrible
+1,Atlanta Falcons,53.5,Atl,"(52.479, 56.5]",Awesome
+2,Baltimore Ravens,43.5,Bal,"(42.792, 48.958]",Neutral
+3,Buffalo Bills,41.0,Buf,"(40.146, 42.792]",Concerned
+4,Carolina Panthers,43.5,Car,"(42.792, 48.958]",Neutral
+5,Chicago Bears,37.5,Chi,"(37.0, 40.146]",Terrible
+6,Cincinnati Bengals,43.5,Cin,"(42.792, 48.958]",Neutral
+7,Cleveland Browns,39.5,Cle,"(37.0, 40.146]",Terrible
+8,Dallas Cowboys,41.5,Dal,"(40.146, 42.792]",Concerned
+9,Denver Broncos,43.5,Den,"(42.792, 48.958]",Neutral
+10,Detroit Lions,52.0,Det,"(48.958, 52.479]",Good
+11,Green Bay Packers,45.5,GB,"(42.792, 48.958]",Neutral
+12,Houston Texans,41.5,Hou,"(40.146, 42.792]",Concerned
+13,Indianapolis Colts,47.5,Ind,"(42.792, 48.958]",Neutral
+14,Jacksonville Jaguars,39.5,Jac,"(37.0, 40.146]",Terrible
+15,Kansas City Chiefs,56.0,KC,"(52.479, 56.5]",Awesome
+16,Los Angeles Chargers,48.0,LAC,"(42.792, 48.958]",Neutral
+17,Los Angeles Rams,48.0,LAR,"(42.792, 48.958]",Neutral
+18,Miami Dolphins,43.5,Mia,"(42.792, 48.958]",Neutral
+19,Minnesota Vikings,41.0,Min,"(40.146, 42.792]",Concerned
+20,New England Patriots,52.0,NE,"(48.958, 52.479]",Good
+21,New Orleans Saints,53.5,NO,"(52.479, 56.5]",Awesome
+22,New York Giants,41.5,NYG,"(40.146, 42.792]",Concerned
+23,New York Jets,39.5,NYJ,"(37.0, 40.146]",Terrible
+24,Oakland Raiders,43.5,Oak,"(42.792, 48.958]",Neutral
+25,Philadelphia Eagles,47.5,Phi,"(42.792, 48.958]",Neutral
+26,Pittsburgh Steelers,53.5,Pit,"(52.479, 56.5]",Awesome
+27,San Francisco 49ers,56.0,SF,"(52.479, 56.5]",Awesome
+28,Seattle Seahawks,41.5,Sea,"(40.146, 42.792]",Concerned
+29,Tampa Bay Buccaneers,53.5,TB,"(52.479, 56.5]",Awesome
+30,Tennessee Titans,39.5,Ten,"(37.0, 40.146]",Terrible
+31,Washington Redskins,45.5,Wsh,"(42.792, 48.958]",Neutral
