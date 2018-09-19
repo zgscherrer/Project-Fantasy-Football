@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>S-Rank Calculations</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+
+<body id="page-top">
+		<!-- Navigation -->
+    <a class="menu-toggle rounded" href="#">
+			<i class="fas fa-bars"></i>
+		  </a>
+		  <nav id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+			  <li class="sidebar-brand">
+				<a class="js-scroll-trigger" href="index.html">S-Rank</a>
+			  </li>
+			  <li class="sidebar-nav-item">
+				<a class="js-scroll-trigger" href="index.html">Home</a>
+			  </li>
+			  <li class="sidebar-nav-item">
+				<a class="js-scroll-trigger" href="index.html">Information</a>
+			  </li>
+			  <li class="sidebar-nav-item">
+				<a class="js-scroll-trigger" href="index.html">Factors</a>
+			  </li>
+			  <li class="sidebar-nav-item">
+				<a class="js-scroll-trigger" href="index.html">Resources</a>
+			  </li>
+			  <li class="sidebar-nav-item">
+				<a class="js-scroll-trigger" href="index.html">Subscribe</a>
+			  </li>
+			</ul>
+		  </nav>
+	<!-- Form -->
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<div class="span2">
+				<div class="float-left">
+					<form class="contact100-form validate-form">
+						<span class="contact100-form-title">
+							Select Your Factors!
+						</span>
+
+						<div class="wrap-input100 validate-input" data-validate="Percent is required">
+							<span class="label-input100">ESPN Projections</span>
+							<input class="input100" type="number" name="ESPN" placeholder="Enter Weight (0 to 100)">
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Percent is required">
+							<span class="label-input100">CBS Projections</span>
+							<input class="input100" type="number" name="CBS" placeholder="Enter Weight (0 to 100)">
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Percent is required">
+							<span class="label-input100">Fantasy Today Projections</span>
+							<input class="input100" type="number" name="Fantasy Today" placeholder="Enter Weight (0 to 100)">
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Percent is required">
+							<span class="label-input100">NFL Projections</span>
+							<input class="input100" type="number" name="NFL" placeholder="Enter Weight (0 to 100)">
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Percent is required">
+							<span class="label-input100">Prior Week Actual</span>
+							<input class="input100" type="number" name="Prior" placeholder="Enter Weight (0 to 100)">
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 input100-select">
+							<span class="label-input100">Boost Factor: Opposing Defense</span>
+							<div>
+								<select class="selection-2" name="Defense">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 input100-select">
+							<span class="label-input100">Boost Factor: Over/Under Line</span>
+							<div>
+								<select class="selection-2" name="Over/Under">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 input100-select">
+							<span class="label-input100">Boost Factor: Twitter Sentiment</span>
+							<div>
+								<select class="selection-2" name="Twitter">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 input100-select">
+							<span class="label-input100">Boost Factor: Injury Status</span>
+							<div>
+								<select class="selection-2" name="Injury">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 input100-select">
+							<span class="label-input100">Boost Factor: Weather</span>
+							<div>
+								<select class="selection-2" name="Weather">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Message is required">
+							<span class="label-input100">Notes</span>
+							<textarea class="input100" name="message" placeholder="Your notes here..."></textarea>
+							<span class="focus-input100"></span>
+						</div>
+
+						<div class="container-contact100-form-btn">
+							<div class="wrap-contact100-form-btn">
+								<div class="contact100-form-bgbtn"></div>
+								<button class="contact100-form-btn">
+									<span>
+										Submit
+										<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+									</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				<div>
+			<div>
+			<div class="span10">
+			<!--Charts content-->
+			</div>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body>
+</html>
