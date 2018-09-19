@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>S-Rank Charts</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Return Home
+            </a>
+          </div>
+        </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <style>
+          .jumbotron {
+            background-color: rgb(212, 142, 61);
+          }
+        </style>
+
+        <h1>S-Rank Player Comparisons</h1>
+        <h3>Use the interactive charts below to explore the dataset.</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>SELECT WEEK:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="pie"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <div id="pie-test"></div>
+
+  <!-- <footer class="footer text-center">
+    <style>
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 25px;
+        line-height: 25px;
+        /* Vertically center the text there */
+        background-color: rgb(212, 142, 61);
+        box-shadow: 0px 0px 30px 0px rgb(141, 141, 141);
+      }
+      .text {
+        color: rgba(255, 255, 255, 0.596);
+        font-size: smaller;
+      }
+    </style>
+
+    <span class="text">Copyright 2018</span>
+
+  </footer> -->
+
+
+
+
+
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+
+</html>
