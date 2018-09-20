@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>S-Rank Data</title>
+  <title>Expert Tweets</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -15,29 +15,30 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">Return Home
+          <a class="navbar-brand" href="/">Return Home
           </a>
         </div>
       </div>
     </nav>
     <div class="hero text-center">
-      <h1>S- Rank Player Data</h1>
+      <h1>Expert Tweets</h1>
+      <hr>
     </div>
     <div class="container">
       <div class="row margin-top-50">
         <div class="col-md-2">
           <aside class="filters">
             <div class="panel panel-default">
-              <div class="panel-heading">Filter Search</div>
+              <div class="panel-heading">Analyze How The Fantasy Experts Feel About Your Players</div>
               <div class="panel-body">
                 <form>
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Player</label>
-                        <input class="form-control" id="form-filter-datetime" type="text" placeholder="Aaron Rogers">
+                        <input class="form-control" id="form-filter-datetime" type="text" placeholder="Full Name">
                       </li>
-                      <li class="filter list-group-item">
+                      <!-- <li class="filter list-group-item">
                         <label for="date">Enter a Position</label>
                         <input class="form-control" id="form-filter-city" type="text" placeholder="Quarterback">
                       </li>
@@ -52,10 +53,10 @@
                       <li class="filter list-group-item">
                         <label for="date">Available</label>
                         <input class="form-control" id="form-filter-shape" type="text" placeholder="TBD">
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
-                  <button id="filter-btn" type="submit" class="btn btn-info">Filter Table</button>
+                  <button id="filter-btn" type="submit" class="btn btn-info">Go!</button>
                 </form>
               </div>
             </div>
@@ -63,7 +64,7 @@
         </div>
         <div class="col-md-10">
           <div id="table-area" class="">
-            <table id="ufo-table" class="table table-striped">
+            <!-- <table id="ufo-table" class="table table-striped">
               <thead>
                 <tr>
                   <th class="table-head">Player</th>
@@ -76,14 +77,14 @@
                 </tr>
               </thead>
               <tbody></tbody>
-            </table>
+            </table> -->
           </div>
         </div>
       </div>
     </div>
-    <footer class="footer">
+    <!-- <footer class="footer">
       <span class="bottom">Copyright 2018</span>
-    </footer>
+    </footer> -->
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <!-- <script src="static/js/data.js"></script> -->
