@@ -1,115 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>S-Rank Calculations</title>
+	<title>S-Rank Customized Rankings</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css') }}"> -->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+
+	<!-- load up d3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
 
 </head>
 
 <body id="page-top">
+
+	<!-- Navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-		  <div class="navbar-header">
-			<a class="navbar-brand" href="index.html">Return Home
-			</a>
-		  </div>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Return Home
+				</a>
+			</div>
 		</div>
-	  </nav>
-	<!-- Form -->
-	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<div class="span2">
-				<div class="float-left">
-					<form class="contact100-form validate-form">
-						<span class="contact100-form-title">
-							Select Your Factors!
-						</span>
+	</nav>
 
-						<div class="wrap-input100 validate-input" data-validate="Percent is required">
-							<span class="label-input100">ESPN Projections</span>
-							<input class="input100" type="number" name="ESPN" placeholder="Enter Weight (0 to 100)">
-							<span class="focus-input100"></span>
-						</div>
 
-						<div class="wrap-input100 validate-input" data-validate="Percent is required">
-							<span class="label-input100">CBS Projections</span>
-							<input class="input100" type="number" name="CBS" placeholder="Enter Weight (0 to 100)">
-							<span class="focus-input100"></span>
-						</div>
+	<!-- main bootstrap body container -->
+	<div class="container">
+		<div class="row">
 
-						<div class="wrap-input100 validate-input" data-validate="Percent is required">
-							<span class="label-input100">Fantasy Today Projections</span>
-							<input class="input100" type="number" name="Fantasy Today" placeholder="Enter Weight (0 to 100)">
-							<span class="focus-input100"></span>
-						</div>
+			<!-- bootstrap column for the factor form on the left -->
+			<div class="col-lg-3">
 
-						<div class="wrap-input100 validate-input" data-validate="Percent is required">
-							<span class="label-input100">NFL Projections</span>
-							<input class="input100" type="number" name="NFL" placeholder="Enter Weight (0 to 100)">
-							<span class="focus-input100"></span>
-						</div>
+				<!-- Select your Factors Form -->
+				<div class="container-contact100">
+					<div class="wrap-contact100">
+						<div class="span2">
+							<div class="float">
+								<form method="POST" class="contact100-form validate-form">
 
-						<div class="wrap-input100 validate-input" data-validate="Percent is required">
-							<span class="label-input100">Prior Week Actual</span>
-							<input class="input100" type="number" name="Prior" placeholder="Enter Weight (0 to 100)">
-							<span class="focus-input100"></span>
-						</div>
+									<!-- Add in a week drop down at the top -->
+									<div class="wrap-input100 input100-select">
+										<!-- <span class="label-input100">Week</span> -->
+										<div>
+											<select class="selection-2" name="Week">
+												<option value=3>Week 3</option>
+												<option value=2>Week 2</option>
+												<option value=1>Week 1</option>
+											</select>
+										</div>
+										<span class="focus-input100"></span>
+									</div>
 
-						<div class="wrap-input100 input100-select">
-							<span class="label-input100">Boost Factor: Opposing Defense</span>
-							<div>
-								<select class="selection-2" name="Defense">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</div>
-							<span class="focus-input100"></span>
-						</div>
+									<span class="contact100-form-title">
+										Select Your
+										<br>S-Rank&reg; Projection Factors
+										<p class="directions">Decide on your customized projections weighting based on your confidence in each of the five fantasy projections
+											sources. Enter a value of 0-100% to create your weighted average, making sure your total adds up to 100%. The
+											default is an equal weighting of 20% for each projection source.</p>
+									</span>
 
-						<div class="wrap-input100 input100-select">
-							<span class="label-input100">Boost Factor: Over/Under Line</span>
-							<div>
-								<select class="selection-2" name="Over/Under">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</div>
-							<span class="focus-input100"></span>
-						</div>
+									<div class="wrap-input100 validate-input" data-validate="Percent is required">
+										<span class="label-input100">ESPN PPR Projections</span>
+										<input class="input100" type="number" name="ESPN" placeholder="Enter Weight (0 to 100)" value="20">
+										<span class="focus-input100"></span>
+									</div>
 
-						<div class="wrap-input100 input100-select">
-							<span class="label-input100">Boost Factor: Twitter Sentiment</span>
-							<div>
-								<select class="selection-2" name="Twitter">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</div>
-							<span class="focus-input100"></span>
-						</div>
+									<div class="wrap-input100 validate-input" data-validate="Percent is required">
+										<span class="label-input100">CBS PPR Projections</span>
+										<input class="input100" type="number" name="CBS" placeholder="Enter Weight (0 to 100)" value="20">
+										<span class="focus-input100"></span>
+									</div>
 
-						<div class="wrap-input100 input100-select">
+									<div class="wrap-input100 validate-input" data-validate="Percent is required">
+										<span class="label-input100">Fantasy Sharks PPR Projections</span>
+										<input class="input100" type="number" name="Sharks" placeholder="Enter Weight (0 to 100)" value="20">
+										<span class="focus-input100"></span>
+									</div>
+
+									<div class="wrap-input100 validate-input" data-validate="Percent is required">
+										<span class="label-input100">Scout Fantasy PPR Projections</span>
+										<input class="input100" type="number" name="Scout" placeholder="Enter Weight (0 to 100)" value="20">
+										<span class="focus-input100"></span>
+									</div>
+
+									<div class="wrap-input100 validate-input" data-validate="Percent is required">
+										<span class="label-input100">Prior Week PPR Actual Points</span>
+										<input class="input100" type="number" name="Prior" placeholder="Enter Weight (0 to 100)" value="20">
+										<span class="focus-input100"></span>
+									</div>
+
+									<span class="contact100-form-title">
+										<br>Select Your
+										<br>S-Rank&reg; Boost Factors
+										<p class="directions">Decide how much of our proprietary Boost Factor&trade; algorithms to apply to your projections.</p>
+									</span>
+
+									<div class="wrap-input100 input100-select">
+										<span class="label-input100">Boost Factor&trade; : Opposing Defense</span>
+										<div>
+											<select class="selection-2" name="Defense">
+												<option selected="selected">Full</option>
+												<option>Partial</option>
+												<option>None</option>
+											</select>
+										</div>
+										<span class="focus-input100"></span>
+									</div>
+
+									<div class="wrap-input100 input100-select">
+										<span class="label-input100">Boost Factor&trade;: Over/Under Line</span>
+										<div>
+											<select class="selection-2" name="OverUnder">
+												<option>Full</option>
+												<option>Partial</option>
+												<option>None</option>
+											</select>
+										</div>
+										<span class="focus-input100"></span>
+									</div>
+
+									<div class="wrap-input100 input100-select">
+										<span class="label-input100">Boost Factor&trade;: Twitter Sentiment</span>
+										<div>
+											<select class="selection-2" name="Twitter">
+												<option>Full</option>
+												<option>Partial</option>
+												<option>None</option>
+											</select>
+										</div>
+										<span class="focus-input100"></span>
+									</div>
+
+									<!-- <div class="wrap-input100 input100-select">
 							<span class="label-input100">Boost Factor: Injury Status</span>
 							<div>
 								<select class="selection-2" name="Injury">
@@ -129,74 +171,124 @@
 								</select>
 							</div>
 							<span class="focus-input100"></span>
-						</div>
+						</div> -->
 
-						<div class="wrap-input100 validate-input" data-validate = "Message is required">
-							<span class="label-input100">Notes</span>
-							<textarea class="input100" name="message" placeholder="Your notes here..."></textarea>
-							<span class="focus-input100"></span>
-						</div>
+									<div class="wrap-input100 validate-input" data-validate="Message is required">
+										<span class="label-input100">Notes</span>
+										<textarea class="input100" name="message" placeholder="Your notes here..."></textarea>
+										<span class="focus-input100"></span>
+									</div>
 
-						<div class="container-contact100-form-btn">
-							<div class="wrap-contact100-form-btn">
-								<div class="contact100-form-bgbtn"></div>
-								<button class="contact100-form-btn">
-									<span>
-										Submit
-										<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-									</span>
-								</button>
+									<div class="container-contact100-form-btn">
+										<div class="wrap-contact100-form-btn">
+											<div class="contact100-form-bgbtn"></div>
+											<button class="contact100-form-btn" onclick="getJsonData()">
+												<span>
+													Submit
+													<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+												</span>
+											</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
-					</form>
-				<div>
-			<div>
-			<div class="span10">
-			<!--Charts content-->
+
+					</div>
+				</div>
 			</div>
+			<!--end of col-md-4 div for input area-->
+
+
+			<!-- bootstrap column for the player table output on the right -->
+			<div class="col-lg-9">
+				<!-- Customized Player Outputs -->
+				<div class="container-contact100">
+					<div class="wrap-contact100">
+						<div class="span2">
+							<div class="float">
+								<!--all data needs to go within this div-->
+								<span class="contact100-form-title">Customized Player Rankings
+								</span>
+
+								<table id="data-table" class="table table-striped">
+									<thead>
+										<tr>
+											<th class="table-head">PLAYER</th>
+											<th class="table-head">POS</th>
+											<th class="table-head">TEAM</th>
+											<th class="table-head">FPTS_PPR_ESPN</th>
+											<th class="table-head">FPTS_PPR_CBS</th>
+											<th class="table-head">FPTS_PPR_SHARKS</th>
+											<th class="table-head">FPTS_PPR_SCOUT</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for player_dict in tableData%} 
+											<tr>
+												<td>{{player_dict.PLAYER}}</td>
+												<td>{{player_dict.POS}}</td>
+												<td>{{player_dict.TEAM}}</td>
+												<td>{{player_dict.FPTS_PPR_ESPN}}</td>
+												<td>{{player_dict.FPTS_PPR_CBS}}</td>
+												<td>{{player_dict.FPTS_PPR_SHARKS}}</td>
+												<td>{{player_dict.FPTS_PPR_SCOUT}}</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end of col-md-8 div for output area-->
+
 		</div>
+		<!--end of main bootstrap row-->
+
 	</div>
+	<!--end of bootstrap container-->
 
 
 
-	<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js') }}"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
 	<script>
 		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
+			// minimumResultsForSearch: 20,
+			// dropdownParent: $('#dropDownSelect1')
 		});
 	</script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js') }}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}"></script>
-<!--===============================================================================================-->
+	<!-- =============================================================================================== -->
+	<!-- <script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js') }}"></script> -->
+	<!-- ===============================================================================================-->
+	<!-- <script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}"></script> -->
+	<!-- =============================================================================================== -->
 	<script src="{{ url_for('static', filename='js/input_main.js') }}"></script>
-
 
 	<script src="{{ url_for('static', filename='js/input.js') }}"></script>
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-  gtag('config', 'UA-23581568-13');
-</script>
+		gtag('config', 'UA-23581568-13');
+	</script>
+
 
 </body>
+
 </html>

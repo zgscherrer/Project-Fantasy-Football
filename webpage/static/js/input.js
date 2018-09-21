@@ -1,3 +1,22 @@
+//get the json data after the user input is specified and submit button clicked
+// var customURL = 'http://127.0.0.1:5000/input?Week=3&ESPN=24&CBS=20&Sharks=20&Scout=20&Prior=20&Defense=Full&OverUnder=Full&Twitter=Full&message='
+
+function getJsonData() {
+  var customURL = 'http://127.0.0.1:5000/input/test'
+
+  
+
+
+  d3.json(customURL).then(function (customData) {
+    //check that app.py is returning good data
+    console.log(customData)
+    console.log(customData[0])
+
+
+
+});
+}
+
 //populates side panel with all of the sample's metadata
 function buildMetadata(sample) {
   //use flask api route for metadata that returns a json
