@@ -57,20 +57,38 @@ def data():
 
 
 # Connor
-@app.route("/tweet")
+@app.route("/tweet", methods=['POST', 'GET'])
 def tweet():
-    # """Return a table on ufo template"""
-    #get week 1 projections
-    stmt = """
-    SELECT *
-    FROM week2_ppr_projections
-    """
+    if request.method == "GET":
+        # Return an initial blank form before user inputs their custom factors
+        #call database test
+        stmt = """
+            SELECT *
+            FROM week_3_tweets
+            """
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
 
-    # stmt = db.session.query(week1_ppr_projections).statement
+        #send dataframe to records (a list of dictionaries for each row)
+        initialTableData = df_proj.to_dict('records')
+        return render_template("tweet.html", tableData=initialTableData)
+        
+    elif request.method == "POST":
+        # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
+        filter_player_name = request.form.get("player_name")
+        # return jsonify(request.form)
+        # scout = request.form.get('')
 
-    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
-    print(df_week1_ppr_projections.head())
-    return render_template("tweet.html")
+        #call database test
+        stmt = """
+            SELECT *
+            FROM week_3_tweets
+            WHERE player = '{}'
+            """.format(filter_player_name)
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
+
+        #send dataframe to records (a list of dictionaries for each row)
+        userTableData = df_proj.to_dict('records')
+        return render_template("tweet.html", tableData=userTableData)
 
 
 
