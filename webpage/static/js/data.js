@@ -7,44 +7,45 @@
 
 
 // get the data array of objects from data.js
-var tableData = data;
-// console.log(tableData)
+var tableData = [{"PLAYER":"Alvin Kamara","POS":"RB","TEAM":"NO","FPTS_PPR_ESPN":22.2,"FPTS_PPR_CBS":19.0,"FPTS_PPR_SHARKS":19.1,"FPTS_PPR_SCOUT":34.0,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":1},
+            {"PLAYER":"David Johnson","POS":"RB","TEAM":"Ari","FPTS_PPR_ESPN":21.3,"FPTS_PPR_CBS":19.0,"FPTS_PPR_SHARKS":23.6,"FPTS_PPR_SCOUT":27.0,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":2},
+            {"PLAYER":"Todd Gurley","POS":"RB","TEAM":"LAR","FPTS_PPR_ESPN":21.2,"FPTS_PPR_CBS":23.0,"FPTS_PPR_SHARKS":19.3,"FPTS_PPR_SCOUT":28.5,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":3},
+            {"PLAYER":"Antonio Brown","POS":"WR","TEAM":"Pit","FPTS_PPR_ESPN":19.5,"FPTS_PPR_CBS":22.0,"FPTS_PPR_SHARKS":19.3,"FPTS_PPR_SCOUT":17.3,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":4},
+            {"PLAYER":"Tom Brady","POS":"QB","TEAM":"NE","FPTS_PPR_ESPN":19.4,"FPTS_PPR_CBS":20.0,"FPTS_PPR_SHARKS":27.4,"FPTS_PPR_SCOUT":23.3,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":5},
+            {"PLAYER":"Aaron Rodgers","POS":"QB","TEAM":"GB","FPTS_PPR_ESPN":19.0,"FPTS_PPR_CBS":22.0,"FPTS_PPR_SHARKS":22.4,"FPTS_PPR_SCOUT":27.1,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":6},
+            {"PLAYER":"Cam Newton","POS":"QB","TEAM":"Car","FPTS_PPR_ESPN":18.7,"FPTS_PPR_CBS":17.0,"FPTS_PPR_SHARKS":21.4,"FPTS_PPR_SCOUT":24.2,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":7},
+            {"PLAYER":"Andrew Luck","POS":"QB","TEAM":"Ind","FPTS_PPR_ESPN":18.4,"FPTS_PPR_CBS":20.0,"FPTS_PPR_SHARKS":21.1,"FPTS_PPR_SCOUT":23.7,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":8},
+            {"PLAYER":"Ezekiel Elliott","POS":"RB","TEAM":"Dal","FPTS_PPR_ESPN":18.4,"FPTS_PPR_CBS":15.0,"FPTS_PPR_SHARKS":18.9,"FPTS_PPR_SCOUT":23.0,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":9},
+            {"PLAYER":"DeAndre Hopkins","POS":"WR","TEAM":"Hou","FPTS_PPR_ESPN":18.2,"FPTS_PPR_CBS":22.0,"FPTS_PPR_SHARKS":16.4,"FPTS_PPR_SCOUT":23.6,"FPTS_PPR_PRVS_WK_ACTUAL":0.0,"PK":10}]// console.log(tableData)
+console.log(tableData)
 
-//function that will capitalize the first letter of multiple words stored in lowercase
-//like our cities are stored (will change city 'el cajon' to 'El Cajon')
-function capitalizeWords(string) {
-    return string.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-};
+
 
 //function to insert table data
-function insertTableData(ufoDataArray) {
-    //map the array to create each innerHTML row text for each ufoSiting data object (alternative to using forEach)
-    let htmlArray = ufoDataArray.map(ufoSiting => {
+function insertTableData(dataDataArray) {
+    //map the array to create each innerHTML row text for each dataRow data object (alternative to using forEach)
+    let htmlArray = dataDataArray.map(dataRow => {
         //INNERHTML OPTION to INSERT TABLE INFO:
         //create all html code to be inserted - includeing tr, td elements, and text
         //by calling data from the data file
         //for city capitalize first letter, for state/country codes capitalize all letters
-                    let ufoHTML = 
+                    let dataHTML = 
                                 `<tr>
-                                <td>${ufoSiting.datetime}</td>
-                                <td>${capitalizeWords(ufoSiting.city)}</td>
-                                <td>${ufoSiting.state.toUpperCase()}</td>
-                                <td>${ufoSiting.country.toUpperCase()}</td>
-                                <td>${ufoSiting.shape}</td>
-                                <td>${ufoSiting.durationMinutes}</td>
-                                <td>${ufoSiting.comments}</td>
+                                <td>${dataRow.PLAYER}</td>
+                                <td>${dataRow.POS}</td>
+                                <td>${dataRow.TEAM}</td>
+                                <td>${dataRow.FPTS_PPR_PRVS_WK_ACTUAL}</td>
+                                <td>${dataRow.WEEK}</td>
                                 </tr>`;
-                    return ufoHTML
+                    return dataHTML
     });
 
     //get the body of the table to add to
-    let ufoTable = document.getElementById("ufo-table");
-    let ufoTableBody = ufoTable.getElementsByTagName('tbody')[0];
+    let dataTable = document.getElementById("data-table");
+    let dataTableBody = dataTable.getElementsByTagName('tbody')[0];
 
     //insert the html code into the inside of the ufoTableBody (join the whole array of HTML into one long HTML string)
-    ufoTableBody.innerHTML = htmlArray.join("\n");
+    dataTableBody.innerHTML = htmlArray.join("\n");
 };
 
 //initialize the table with all the data provided in data.js when webpage first loads (later can filter the data down)
@@ -77,7 +78,7 @@ d3.select("#filter-btn").on('click', function() {
     let search = {}; //empty dictionary to store the filter values
     //SHORTER CODE option - loops through the filter categories you set in an array to find the form node values and add dictionary item
     //(make sure for this option that you have ids that match the dictionary key values)
-    let filterCategories = ['datetime', 'city', 'state', 'country', 'shape']
+    let filterCategories = ['PLAYER', 'POS', 'TEAM', 'FPTS_PPR_PRVS_WK_ACTUAL', 'WEEK']
     filterCategories.forEach(filterCategory => {
             search[filterCategory] = d3.select(`#form-filter-${filterCategory}`).property('value')
             })
@@ -99,16 +100,16 @@ d3.select("#filter-btn").on('click', function() {
     let searchValuesUsed = searchKeysUsed.map(keyUsed => search[keyUsed].toLowerCase());
     console.log('The filter criteria you entered are: ', searchValuesUsed)
 
-    //filter the tableData, it will cycle through each ufoSiting data object and compare the searchValuesUsed to the 
-    //corresponding values of each ufoSiting data object
-    let filteredTableData = tableData.filter(ufoSiting => {
-        //get an array of values from each ufoSiting set of data that matches the order of the user search values array
+    //filter the tableData, it will cycle through each dataRow data object and compare the searchValuesUsed to the 
+    //corresponding values of each dataRow data object
+    let filteredTableData = tableData.filter(dataRow => {
+        //get an array of values from each dataRow set of data that matches the order of the user search values array
         //and only include the values that the user actually typed in the forms
-        let ufoSitingValuesCompared = searchKeysUsed.map(keyUsed => ufoSiting[keyUsed]);
+        let dataRowValuesCompared = searchKeysUsed.map(keyUsed => dataRow[keyUsed]);
         
-        //javascript won't compare two arrays, so convert both the ufoSiting values and user values to strings to compare
-        //if they are equal, then include this whole set of ufoSiting data in the filtered data
-        if (ufoSitingValuesCompared.toString() == searchValuesUsed.toString()) {return ufoSiting}
+        //javascript won't compare two arrays, so convert both the dataRow values and user values to strings to compare
+        //if they are equal, then include this whole set of dataRow data in the filtered data
+        if (dataRowValuesCompared.toString() == searchValuesUsed.toString()) {return dataRow}
     });
 
     //re-render data table
@@ -163,7 +164,7 @@ d3.select("#filter-btn").on('click', function() {
 //     }
 //     else {
 //         //filter the table data by the data property and form date entered
-//         let filteredTableData = tableData.filter(ufoSiting => ufoSiting.datetime == dateToFilter)
+//         let filteredTableData = tableData.filter(dataRow => dataRow.datetime == dateToFilter)
 
 //         //re-render the table with only the filtered data
 //         insertTableData(filteredTableData)
