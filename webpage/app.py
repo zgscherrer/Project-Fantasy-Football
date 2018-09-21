@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 import json
-
+from scipy import stats
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -11,6 +11,8 @@ from sqlalchemy import create_engine
 
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+
+
 
 app = Flask(__name__)
 
@@ -124,42 +126,71 @@ def input():
 
 
 
-
-
-
 # Zach
-@app.route("/weeks")
-def weeks():
-    """Return a list of sample names."""
+@app.route("/compare/<week>", methods=['POST', 'GET'])
+def getCharts(week):
+    #get week 1 projections & actuals
+    stmt = "SELECT * FROM week{}_ppr_projections".format(week)
+    df_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
 
-    # Use Pandas to perform the sql query
-    # stmt = db.session.query(week1_ppr_projections).statement
-    stmt = """
-    SELECT *
-    FROM week1_ppr_projections
-    """
-    df = pd.read_sql_query(stmt, db.session.bind)
+    stmt = "SELECT * FROM week{}_ppr_actuals".format(week)
+    df_ppr_actuals = pd.read_sql_query(stmt, db.session.bind)
 
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
+    #merge starting with the actuals db and merge inner (don't want to evaluate correlations of players not in db)
+    df_week1_ppr = pd.merge(df_ppr_actuals, df_ppr_projections[['PLAYER', 'POS',
+                                                'FPTS_PPR_ESPN', 'FPTS_PPR_CBS', 'FPTS_PPR_SHARKS',
+                                                'FPTS_PPR_SCOUT', 'FPTS_PPR_PRVS_WK_ACTUAL']],
+                        how='inner', on=['PLAYER', 'POS'])
 
-# Zach
-@app.route("/compare")
+    #average all four of our projection sources of ESPN, CBS, Sharks, and Scout
+    df_week1_ppr['FPTS_PPR_AVG_PROJ'] = df_week1_ppr[['FPTS_PPR_ESPN','FPTS_PPR_CBS',
+                                                  'FPTS_PPR_SHARKS', 'FPTS_PPR_SCOUT']].mean(axis='columns')
+    json_ppr_proj = df_week1_ppr.to_dict('records')
+    return jsonify(json_ppr_proj)
+
+
+
+# @app.route("/compare/<week>", methods=['POST', 'GET'])
+# def getCharts(week):
+#     #get week 1 projections
+#     stmt = "SELECT * FROM week{}_ppr_projections".format(week)
+
+#     df_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
+#     json_proj = df_ppr_projections.to_dict('records')
+#     return jsonify(json_proj)
+
+
+
+@app.route("/compare", methods=['POST', 'GET'])
 def compare():
-    #get week 1 projections
-    stmt = """
-    SELECT *
-    FROM week1_ppr_projections
-    """
+    if request.method == "GET":
+        # Return an initial blank form before user inputs their custom factors
+        stmt = """
+            SELECT *
+            FROM week3_ppr_projections
+            """
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
 
-    # stmt = db.session.query(week1_ppr_projections).statement
+        #send dataframe to records (a list of dictionaries for each row)
+        initialTableData = df_proj.to_dict('records')
+        return render_template("compare.html", tableData=initialTableData)
+        
+    elif request.method == "POST":
+        # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
+        
+        #return jsonify(request.form)
+        scout = request.form.get('')
 
-    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
-    print(df_week1_ppr_projections.head())
-    return render_template("compare.html")
+        #call database test
+        stmt = """
+            SELECT *
+            FROM week3_ppr_projections
+            """
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
 
-
-
+        #send dataframe to records (a list of dictionaries for each row)
+        userTableData = df_proj.to_dict('records')
+        return render_template("compare.html", tableData=userTableData)
 
 
 
@@ -191,3 +222,5 @@ if __name__ == '__main__':
 
 # if __name__ == '__main__':
 #    app.run(debug = True)
+
+
