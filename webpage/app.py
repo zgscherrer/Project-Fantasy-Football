@@ -128,13 +128,28 @@ def input():
 
 
 # Zach
+@app.route("/weeks")
+def weeks():
+    """Return a list of sample names."""
+
+    # Use Pandas to perform the sql query
+    # stmt = db.session.query(week1_ppr_projections).statement
+    stmt = """
+    SELECT *
+    FROM week1_ppr_projections
+    """
+    df = pd.read_sql_query(stmt, db.session.bind)
+
+    # Return a list of the column names (sample names)
+    return jsonify(list(df.columns)[2:])
+
+# Zach
 @app.route("/compare")
 def compare():
-    # """Return a table on ufo template"""
     #get week 1 projections
     stmt = """
     SELECT *
-    FROM week2_ppr_projections
+    FROM week1_ppr_projections
     """
 
     # stmt = db.session.query(week1_ppr_projections).statement
