@@ -2,13 +2,14 @@ import os
 
 import pandas as pd
 import numpy as np
+import json
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -76,20 +77,52 @@ def tweet():
 
 
 # Mike
-@app.route("/input")
+@app.route("/input", methods=['POST', 'GET'])
 def input():
-    # """Return a table on ufo template"""
-    #get week 1 projections
-    stmt = """
-    SELECT *
-    FROM week2_ppr_projections
-    """
+    if request.method == "GET":
+        # Return an initial blank form before user inputs their custom factors
+        return render_template("input.html")
+        
+    elif request.method == "POST":
+        # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
+        
+        #return jsonify(request.form)
+        scout = request.form.get('')
 
-    # stmt = db.session.query(week1_ppr_projections).statement
+        #call database test
+        stmt = """
+            SELECT *
+            FROM week3_ppr_projections
+            """
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
 
-    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
-    print(df_week1_ppr_projections.head())
-    return render_template("input.html")
+        #send dataframe to records (a list of dictionaries for each row)
+        userTableData = df_proj.to_dict('records')
+        return render_template("input.html", tableData=userTableData)
+
+
+
+
+# @app.route("/input/test") #?Week=<week>&ESPN=<espn_wt>&CBS=<cbs_wt>&Sharks=<sharks_wt>&Scout=<scout_wt>&Prior=<prior_wt>&Defense=<def_boost>&OverUnder=<overunder_boost>&Twitter=<twitter_boost>&message=<msg_text>")
+# def calculate_custom_factors():
+#     #get current week projections
+#     stmt = """
+#     SELECT *
+#     FROM week3_ppr_projections
+#     """
+#     df_proj = pd.read_sql_query(stmt, db.session.bind)
+
+
+#     #export df as json - orient='records' gives a json string that is a list of dictionaries, 
+#     # one dictionary for each row in df with column as keys and row values as values
+#     #also need to use python's json.loads function to create it to a real json and not string object
+#     json_proj = json.loads(df_proj.to_json(orient='records'))
+
+#     print(json_proj)
+#     print(type(json_proj))
+#     return render_template("input.html", jsonUser=jsonify(json_proj))
+
+
 
 
 
