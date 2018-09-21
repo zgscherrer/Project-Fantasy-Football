@@ -214,13 +214,14 @@
 								<table id="data-table" class="table table-striped">
 									<thead>
 										<tr>
-											<th class="table-head">PLAYER</th>
-											<th class="table-head">POS</th>
-											<th class="table-head">TEAM</th>
-											<th class="table-head">FPTS_PPR_ESPN</th>
-											<th class="table-head">FPTS_PPR_CBS</th>
-											<th class="table-head">FPTS_PPR_SHARKS</th>
-											<th class="table-head">FPTS_PPR_SCOUT</th>
+											<th class="table-head">Player</th>
+											<th class="table-head">Pos</th>
+											<th class="table-head">Team</th>
+											<th class="table-head">ESPN Projection</th>
+											<th class="table-head">CBS Projection</th>
+											<th class="table-head">Sharks Projection</th>
+											<th class="table-head">Scout Projection</th>
+											<th class="table-head">S-Rank Custom Weighted Projection</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -233,6 +234,7 @@
 												<td>{{player_dict.FPTS_PPR_CBS}}</td>
 												<td>{{player_dict.FPTS_PPR_SHARKS}}</td>
 												<td>{{player_dict.FPTS_PPR_SCOUT}}</td>
+												<td>{{player_dict.FPTS_PPR_CUSTOM_AVG}}</td>
 											</tr>
 										{% endfor %}
 									</tbody>

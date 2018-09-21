@@ -85,16 +85,39 @@ def input():
         
     elif request.method == "POST":
         # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
-        
-        #return jsonify(request.form)
-        scout = request.form.get('')
+        #define all of our variables from the form POST data
+        week = request.form.get('Week')
+        espn_wt = eval(request.form.get('ESPN'))
+        cbs_wt = eval(request.form.get('CBS'))
+        sharks_wt = eval(request.form.get('Sharks'))
+        scout_wt = eval(request.form.get('Scout'))
+        prior_wt = eval(request.form.get('Prior'))
+        def_boost = request.form.get('Defense')
+        overunder_boost = request.form.get('OverUnder')
+        twitter_boost = request.form.get('Twitter')
+
+        #convert weights to percentages
+        espn_pct = espn_wt/100
+        cbs_pct = cbs_wt/100
+        sharks_pct = sharks_wt/100
+        scout_pct = scout_wt/100
+        prior_pct = prior_wt/100
 
         #call database test
-        stmt = """
-            SELECT *
-            FROM week3_ppr_projections
-            """
+        stmt = f"""
+                SELECT *
+                FROM week{week}_ppr_projections
+                """
         df_proj = pd.read_sql_query(stmt, db.session.bind)
+
+        #create initial custom weighted average of the five projection sources based on user input
+        df_proj['FPTS_PPR_CUSTOM_AVG'] = df_proj.apply(lambda row: 
+                                            (row['FPTS_PPR_ESPN']*espn_pct +
+                                            row['FPTS_PPR_CBS']*cbs_pct +
+                                            row['FPTS_PPR_SHARKS']*sharks_pct +
+                                            row['FPTS_PPR_SCOUT']*scout_pct +
+                                            row['FPTS_PPR_PRVS_WK_ACTUAL']*prior_pct),
+                                            axis='columns')
 
         #send dataframe to records (a list of dictionaries for each row)
         userTableData = df_proj.to_dict('records')
