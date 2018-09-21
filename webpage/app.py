@@ -38,23 +38,66 @@ def index():
 
 
 # Josh
-@app.route("/data")
+@app.route("/data", methods=['POST', 'GET'])
 def data():
-    # """Return a table on ufo template"""
-    #get week 1 projections
-    stmt = """
-    SELECT *
-    FROM week2_ppr_projections
-    """
+    if request.method == "GET":
+        # Return an initial blank form before user inputs their custom factors
+        #call database test
+        stmt = """
+            SELECT *
+            FROM week3_ppr_projections
+            """
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
 
-    # stmt = db.session.query(week1_ppr_projections).statement
+        #send dataframe to records (a list of dictionaries for each row)
+        initialTableData = df_proj.to_dict('records')
+        return render_template("data.html", tableData=initialTableData)
+        
+    elif request.method == "POST":
+        # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
+        print(request.form)
+        filter_player_name = request.form.get("player_name", "no_player")
+        filter_position = request.form.get("position", "no_position")
+        filter_team = request.form.get("team", "no_team")
+        if filter_player_name != "":
+        # return jsonify(request.form)
+        # scout = request.form.get('')
 
-    df_week1_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
-    print(df_week1_ppr_projections.head())
-    return render_template("data.html")
+            #call database test
+            stmt = """
+                SELECT *
+                FROM week3_ppr_projections
+                WHERE PLAYER LIKE '%{}%'
 
+                """.format(filter_player_name)
+        elif filter_position != "":
+                # return jsonify(request.form)
+                # scout = request.form.get('')
 
+                    #call database test
+                stmt = """
+                    SELECT *
+                    FROM week3_ppr_projections
+                    WHERE POS = '{}'
 
+                    """.format(filter_position)
+        elif filter_team != "":
+                # return jsonify(request.form)
+                # scout = request.form.get('')
+
+                    #call database test
+                stmt = """
+                    SELECT *
+                    FROM week3_ppr_projections
+                    WHERE TEAM = '{}'
+
+                    """.format(filter_team)
+
+        df_proj = pd.read_sql_query(stmt, db.session.bind)
+
+        #send dataframe to records (a list of dictionaries for each row)
+        userTableData = df_proj.to_dict('records')
+        return render_template("data.html", tableData=userTableData)
 
 # Connor
 @app.route("/tweet")
