@@ -30,20 +30,20 @@
             <div class="panel panel-default">
               <div class="panel-heading">Filter Search</div>
               <div class="panel-body">
-                <form>
+                <form method="POST">
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Player</label>
-                        <input class="form-control" id="form-filter-datetime" type="text" placeholder="Aaron Rogers">
+                        <input class="form-control" name="player_name" id="form-filter-datetime" type="text" placeholder="Full Name">
                       </li>
                       <li class="filter list-group-item">
                         <label for="date">Enter a Position</label>
-                        <input class="form-control" id="form-filter-city" type="text" placeholder="QB">
+                        <input class="form-control" name="position" id="form-filter-city" type="text" placeholder="QB">
                       </li>
                       <li class="filter list-group-item">
                         <label for="date">Enter a Team</label>
-                        <input class="form-control" id="form-filter-state" type="text" placeholder="GB">
+                        <input class="form-control" name="team" id="form-filter-state" type="text" placeholder="GB">
                       </li>
                     </ul>
                   </div>
@@ -61,11 +61,27 @@
                   <th class="table-head">Player</th>
                   <th class="table-head">Position</th>
                   <th class="table-head">Team</th>
-                  <th class="table-head">Points</th>
-                  <th class="table-head">Week</th>
+                  <th class="table-head">ESPN</th>
+                  <th class="table-head">CBS</th>
+                  <th class="table-head">SHARKS</th>
+                  <th class="table-head">SCOUT</th>
+                  <th class="table-head">Previous Week</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                {% for player_dict in tableData%} 
+                  <tr>
+                    <td>{{player_dict.PLAYER}}</td>
+                    <td>{{player_dict.POS}}</td>
+                    <td>{{player_dict.TEAM}}</td>
+                    <td>{{player_dict.FPTS_PPR_ESPN}}</td>
+                    <td>{{player_dict.FPTS_PPR_CBS}}</td>
+                    <td>{{player_dict.FPTS_PPR_SHARKS}}</td>
+                    <td>{{player_dict.FPTS_PPR_SCOUT}}</td>
+                    <td>{{player_dict.FPTS_PPR_PRVS_WK_ACTUAL}}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
             </table>
           </div>
         </div>
