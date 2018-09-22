@@ -6,6 +6,7 @@ import json
 from scipy import stats
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
+from boost_functions import *
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
@@ -80,7 +81,7 @@ def data():
                 stmt = """
                     SELECT *
                     FROM week3_ppr_projections
-                    WHERE POS = '{}'
+                    WHERE POS LIKE '%{}%'
 
                     """.format(filter_position)
         elif filter_team != "":
@@ -91,7 +92,7 @@ def data():
                 stmt = """
                     SELECT *
                     FROM week3_ppr_projections
-                    WHERE TEAM = '{}'
+                    WHERE TEAM LIKE '%{}%'
 
                     """.format(filter_team)
 
@@ -127,7 +128,7 @@ def tweet():
         stmt = """
             SELECT *
             FROM week_3_tweets
-            WHERE player = '{}'
+            WHERE player LIKE '%{}%'
             """.format(filter_player_name)
         df_proj = pd.read_sql_query(stmt, db.session.bind)
 
@@ -166,10 +167,12 @@ def input():
         sharks_wt = eval(request.form.get('Sharks'))
         scout_wt = eval(request.form.get('Scout'))
         prior_wt = eval(request.form.get('Prior'))
-        def_boost = request.form.get('Defense')
-        overunder_boost = request.form.get('OverUnder')
-        twitter_boost = request.form.get('Twitter')
+        def_boost_wt = request.form.get('Defense')
+        overunder_boost_wt = request.form.get('OverUnder')
+        twitter_boost_wt = request.form.get('Twitter')
 
+
+        ### CUSTOM PROJECTIONS AVERAGE ###
         #convert weights to percentages
         espn_pct = espn_wt/100
         cbs_pct = cbs_wt/100
@@ -177,7 +180,7 @@ def input():
         scout_pct = scout_wt/100
         prior_pct = prior_wt/100
 
-        #call database test
+        #get the projections for the week from the database
         stmt = f"""
                 SELECT *
                 FROM week{week}_ppr_projections
@@ -193,8 +196,116 @@ def input():
                                             row['FPTS_PPR_PRVS_WK_ACTUAL']*prior_pct),
                                             axis='columns')
 
+        
+        
+        ### BOOST FACTORS ###
+        
+        #GET DEFENSE DATA for your week selected - all defense data for each week is one database,
+        #select only columns you want
+        #NOTE - currently it is pulling in defense sentiment always for week 3 - no sentiments for other weeks
+        stmt_def = f"""
+                    SELECT team_abbr, week_{week}_opp, week_{week}_proj, score_sentiment
+                    FROM def_scores
+                    """
+        df_defense = pd.read_sql_query(stmt_def, db.session.bind)
+
+        #currently score_sentiment is for the offensive opponenet perspective so Min's really good Defense
+        #against Buf has score sentiment of 'Terrible' which is terrible for Buf, so all Buf players
+        #would get negative points weighting - rename column
+        #rename team_abbr to def_team_abbr
+        df_defense.rename(columns={'score_sentiment': 'offense_opp_def_impact',
+                                'team_abbr': 'def_team_abbr'}, inplace=True)
+
+
+        #GET OVERUNDER DATA for your week selected
+        try:
+            stmt_overunder = f"""
+                            SELECT *
+                            FROM week_{week}_over_unders
+                            """
+            df_overunder = pd.read_sql_query(stmt_overunder, db.session.bind)
+        
+        except: #if error because table doesn't exist (we dont' have all previous week data)
+            #then just return an empty dataframe with columns that match the other df so calcs run,
+            # but end with zero boost factors
+            df_overunder = pd.DataFrame(columns=['Unnamed: 0', 'team', 'over_under', 'team_abbr', 'binned', 'score_sentiment'])
+
+
+        #GET TWEET DATA for your week selected
+        try:
+            stmt_tweets = f"""
+                            SELECT *
+                            FROM week_{week}_tweets
+                            """
+            df_tweets = pd.read_sql_query(stmt_tweets, db.session.bind)
+        
+        except: #if error because table doesn't exist (we dont' have all previous week data)
+            #then just return an empty dataframe with columns that match the other df so calcs run,
+            # but end with zero boost factors
+            df_tweets = pd.DataFrame(columns=['Unnamed: 0', 'number', 'player', 'compound_score', 'binned',
+                                                'expert_sentiment', 'color', 'all_tweets'])
+
+        
+        #MERGE BOOST FACTOR DATA TO PLAYERS/PROJECTION DF
+        # #check size of starting df
+        # print(df_proj.shape)
+
+        #first merge in the twitter sentiment - always do left merge (rather have Nans for boost factors than lose players)
+        df_boosts = pd.merge(df_proj, df_tweets[['player', 'compound_score', 'expert_sentiment']],
+                            how='left', left_on='PLAYER', right_on='player')
+        df_boosts.drop('player', axis='columns', inplace=True) #don't need to keep this added player name column
+        # print(df_boosts.shape)
+
+        #second merge in the overunder - always do left merge (rather have Nans for boost factors than lose players)
+        df_boosts = pd.merge(df_boosts, df_overunder[['team_abbr', 'over_under', 'score_sentiment']],
+                            how='left', left_on='TEAM', right_on='team_abbr')
+        df_boosts.drop('team_abbr', axis='columns', inplace=True) #don't need to keep this added team abbr column
+        # print(df_boosts.shape)
+
+        #third merge in the defense projections - always do left merge (rather have Nans for boost factors than lose players)
+        #will merge by the team of the datframe and in defense looking for the opponent (that is offensive opponent of the defense listed as team)
+        df_boosts = pd.merge(df_boosts, df_defense[['def_team_abbr', f"week_{week}_opp", f"week_{week}_proj", 'offense_opp_def_impact']],
+                            how='left', left_on='TEAM', right_on=f"week_{week}_opp")
+        df_boosts.drop(f"week_{week}_opp", axis='columns', inplace=True) #don't need to keep this added team abbr column
+        # print(df_boosts.shape)
+
+        #convert any of the Nans in our binned sentiment columns to Neutral (that will just apply a zero boost to those players)
+        df_boosts.fillna('Neutral', inplace=True)
+
+
+        #CALCULATE BOOST FACTORS AND GET FINAL POINTS
+        df_boosts['OPPOSING_DEFENSE_BOOST'] = df_boosts.apply(lambda row: 
+                                                defense_boost_calculator(row, def_boost_wt),
+                                                axis='columns')
+
+        df_boosts['OVER_UNDER_BOOST'] = df_boosts.apply(lambda row: 
+                                            over_under_boost_calculator(row, overunder_boost_wt),
+                                            axis='columns')
+                
+        df_boosts['TWITTER_BOOST'] = df_boosts.apply(lambda row: 
+                                            twitter_boost_calculator(row, twitter_boost_wt),
+                                            axis='columns')
+
+        #calculate final FPTS ADDING UP ALL BOOST PTS TO THE CUSTOM AVG
+        df_boosts['FPTS_PPR_CUSTOM_AVG_BOOST'] = df_boosts[['FPTS_PPR_CUSTOM_AVG', 'OPPOSING_DEFENSE_BOOST',
+                                                    'OVER_UNDER_BOOST', 'TWITTER_BOOST']].sum(axis='columns') 
+
+        #reorder dataframe and limits columns for the final output data and sort descending by custom poitns
+        df_boosts_output = df_boosts[['PLAYER', 'POS', 'TEAM', 'FPTS_PPR_CUSTOM_AVG_BOOST',
+                                    'FPTS_PPR_ESPN', 'FPTS_PPR_CBS', 'FPTS_PPR_SHARKS', 'FPTS_PPR_SCOUT',
+                                    'FPTS_PPR_PRVS_WK_ACTUAL', 'FPTS_PPR_CUSTOM_AVG', 
+                                    'OVER_UNDER_BOOST', 'TWITTER_BOOST',
+                                    'OPPOSING_DEFENSE_BOOST']].sort_values('FPTS_PPR_CUSTOM_AVG_BOOST',
+                                                                            ascending=False)
+
+
+
+        ### SEND DATA/RENDER TEMPLATE ###
+        #round dataframe numbers to tenths place (so doesn't show up whole long decimal)
+        df_boosts_output = df_boosts_output.round(decimals=1)
+
         #send dataframe to records (a list of dictionaries for each row)
-        userTableData = df_proj.to_dict('records')
+        userTableData = df_boosts_output.to_dict('records')
 
         #render input.html template, return tableData that can build table of the data with user specified calculations, 
         #and return the original userinputs so that can populate those in the input fields so user can see what inputs
