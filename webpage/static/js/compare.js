@@ -20,10 +20,10 @@ function optionChanged(week) {
     var yActualPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ACTUAL)
     console.log(yActualPPR)
 
-
     // GRAPH #1 WILL COMPARE ESPN PROJECTIONS TO ACTUALS
     var xEspnPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ESPN)
     console.log(xEspnPPR)
+
 
     // // if wanted to get line of best fit, would need to perform the linear regrission in python,
     // //create a new column of data points for the y-values, and then import it here to graph
@@ -163,40 +163,53 @@ function optionChanged(week) {
     Plotly.newPlot("scout-accuracy", dataScout, scoutLayout);
 
 
-    // LINE GRAPHS 
-    // // ERROR CHART! ERROR CHART! ERROR CHART! ERROR CHART!
-    // var errorScoutPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SCOUT)
-    // var errorEspnPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ESPN)
-    // var errorCbsPPR = weekData.map(playerDict => playerDict.FPTS_PPR_CBS)
-    // var errorSharkPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SHARKS)
-    // var errorActualPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ACTUAL)
+    const yActualPPRAvgCalc = yActualPPR => yActualPPR.reduce((a,b) => a + b, 0) / yActualPPR.length;
+    var yActualPPRAvg = yActualPPRAvgCalc(yActualPPR)
+    console.log(yActualPPRAvg)
+
+    const xEspnPPRAvgCalc = xEspnPPR => xEspnPPR.reduce((a,b) => a + b, 0) / xEspnPPR.length;
+    var xEspnPPRAvg = xEspnPPRAvgCalc(xEspnPPR)
+    console.log(xEspnPPRAvg)
+
+    const xSharksPPRAvgCalc = xSharksPPR => xSharksPPR.reduce((a,b) => a + b, 0) / xEspnPPR.length;
+    var xSharksPPRAvg = xSharksPPRAvgCalc(xSharksPPR)
+    console.log(xSharksPPRAvg)
+
+    const xCbsPPRAvgCalc = xCbsPPR => xCbsPPR.reduce((a,b) => a + b, 0) / xCbsPPR.length;
+    var xCbsPPRAvg = xCbsPPRAvgCalc(xCbsPPR)
+    console.log(xCbsPPRAvg)
+
+    const xScoutPPRAvgCalc = xScoutPPR => xScoutPPR.reduce((a,b) => a + b, 0) / xScoutPPR.length;
+    var xScoutPPRAvg = xScoutPPRAvgCalc(xScoutPPR)
+    console.log(xScoutPPRAvg)
 
 
-    // var errorTrace1 = {
-    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
-    //   y: [errorEspnPPR, errorCbsPPR, errorScoutPPR, errorSharkPPR],
-    //   name: 'Projected',
-    //   error_y: {
-    //     type: 'percent',
-    //     value: 50,
-    //     visible: true
-    //   },
-    //   type: 'bar'
-    // };
-    // var errorTrace2 = {
-    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
-    //   y: [errorActualPPR, errorActualPPR, errorActualPPR, errorActualPPR],
-    //   name: 'Actual',
-    //   error_y: {
-    //     type: 'percent',
-    //     value: 50,
-    //     visible: true
-    //   },
-    //   type: 'bar'
-    // };
-    // var errorData = [errorTrace1, errorTrace2];
+// ERROR CHART ERROR CHART ERROR CHART
+    var errorTrace1 = {
+      x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+      y: [xEspnPPRAvg, xCbsPPRAvg, xScoutPPRAvg, xSharksPPRAvg],
+      name: 'Projected',
+      error_y: {
+        type: 'percent',
+        value: 50,
+        visible: true
+      },
+      type: 'bar'
+    };
+    var errorTrace2 = {
+      x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+      y: [yActualPPRAvg, yActualPPRAvg, yActualPPRAvg, yActualPPRAvg],
+      name: 'Actual',
+      error_y: {
+        type: 'percent',
+        value: 50,
+        visible: true
+      },
+      type: 'bar'
+    };
+    var errorData = [errorTrace1, errorTrace2];
     // var errorLayout = {barmode: 'group'};
-    // Plotly.newPlot('error-chart', errorData, errorLayout);
+    Plotly.newPlot('error-chart', errorData) //, errorLayout);
 
     // SAMPLE
     // var espnLineTrace = {
