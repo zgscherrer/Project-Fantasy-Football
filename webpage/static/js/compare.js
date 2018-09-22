@@ -76,11 +76,94 @@ function optionChanged(week) {
     
     Plotly.newPlot("espn-accuracy", dataEspn, layout);
 
+
+    // SHARKS! SHARKS! SHARKS! SHARKS! SHARKS!
+    var xSharksPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SHARKS)
+    console.log(xSharksPPR)
+
+    var traceSharks = {
+      x: xSharksPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
     
+    var sharksLayout = {
+      title: `Week ${week} Actual PPRs vs Sharks Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Sharks PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
     
+    var dataSharks = [traceSharks]   //[traceEspn, traceEspnBestFit]
     
+    Plotly.newPlot("sharks-accuracy", dataSharks, sharksLayout);
     
+
+
+    // CBS! CBS! CBS! CBS! CBS! CBS! CBS! CBS! CBS!
+
+    var xCbsPPR = weekData.map(playerDict => playerDict.FPTS_PPR_CBS)
+    console.log(xCbsPPR)
+
+    var traceCbs = {
+      x: xCbsPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
     
+    var cbsLayout = {
+      title: `Week ${week} Actual PPRs vs CBS Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'CBS PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
+    
+    var dataCbs = [traceCbs]   //[traceEspn, traceEspnBestFit]
+    
+    Plotly.newPlot("cbs-accuracy", dataCbs, cbsLayout);
+
+
+    // SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS!
+    var xScoutPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SCOUT)
+    console.log(xScoutPPR)
+
+    var traceScout = {
+      x: xScoutPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
+    
+    var scoutLayout = {
+      title: `Week ${week} Actual PPRs vs Scout Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Scout PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
+    
+    var dataScout = [traceScout]   //[traceEspn, traceEspnBestFit]
+    
+    Plotly.newPlot("scout-accuracy", dataScout, scoutLayout);
+
+
+
     // yActualPpr = weekData[0].FPTS_PPR_ACTUAL;
     // // console.log(yActualPpr)
     // xActualPpr = weekData[0].FPTS_PPR_ESPN;
