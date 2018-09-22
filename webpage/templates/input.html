@@ -63,9 +63,16 @@
 										<!-- <span class="label-input100">Week</span> -->
 										<div>
 											<select class="selection-2" name="Week">
-												<option value=3>Week 3</option>
-												<option value=2>Week 2</option>
-												<option value=1>Week 1</option>
+												<!-- dynamically create drop down options, where the originally selected option is the default or matches user form input -->
+												{% for week in ['3', '2', '1'] %} 
+													<!-- if the week matches the form data put by the user (or the default) then set that dropdown to selected so is visible -->
+													{% if week == formData.Week %}
+														<option value={{week}} selected>Week {{week}}</option>
+													<!-- else create the drop down option, but do not have it selected -->
+													{% else %}
+														<option value={{week}}>Week {{week}}</option>
+													{% endif %}
+												{% endfor %}
 											</select>
 										</div>
 										<span class="focus-input100"></span>
@@ -81,31 +88,31 @@
 
 									<div class="wrap-input100 validate-input" data-validate="Percent is required">
 										<span class="label-input100">ESPN PPR Projections</span>
-										<input class="input100" type="number" name="ESPN" placeholder="Enter Weight (0 to 100)" value="20">
+										<input class="input100" type="number" name="ESPN" placeholder="Enter Weight (0 to 100)" value={{formData.ESPN}}>
 										<span class="focus-input100"></span>
 									</div>
 
 									<div class="wrap-input100 validate-input" data-validate="Percent is required">
 										<span class="label-input100">CBS PPR Projections</span>
-										<input class="input100" type="number" name="CBS" placeholder="Enter Weight (0 to 100)" value="20">
+										<input class="input100" type="number" name="CBS" placeholder="Enter Weight (0 to 100)" value={{formData.CBS}}>
 										<span class="focus-input100"></span>
 									</div>
 
 									<div class="wrap-input100 validate-input" data-validate="Percent is required">
 										<span class="label-input100">Fantasy Sharks PPR Projections</span>
-										<input class="input100" type="number" name="Sharks" placeholder="Enter Weight (0 to 100)" value="20">
+										<input class="input100" type="number" name="Sharks" placeholder="Enter Weight (0 to 100)" value={{formData.Sharks}}>
 										<span class="focus-input100"></span>
 									</div>
 
 									<div class="wrap-input100 validate-input" data-validate="Percent is required">
 										<span class="label-input100">Scout Fantasy PPR Projections</span>
-										<input class="input100" type="number" name="Scout" placeholder="Enter Weight (0 to 100)" value="20">
+										<input class="input100" type="number" name="Scout" placeholder="Enter Weight (0 to 100)" value={{formData.Scout}}>
 										<span class="focus-input100"></span>
 									</div>
 
 									<div class="wrap-input100 validate-input" data-validate="Percent is required">
 										<span class="label-input100">Prior Week PPR Actual Points</span>
-										<input class="input100" type="number" name="Prior" placeholder="Enter Weight (0 to 100)" value="20">
+										<input class="input100" type="number" name="Prior" placeholder="Enter Weight (0 to 100)" value={{formData.Prior}}>
 										<span class="focus-input100"></span>
 									</div>
 
@@ -119,9 +126,16 @@
 										<span class="label-input100">Boost Factor&trade; : Opposing Defense</span>
 										<div>
 											<select class="selection-2" name="Defense">
-												<option selected="selected">Full</option>
-												<option>Partial</option>
-												<option>None</option>
+												<!-- dynamically create drop down options, where the originally selected option is the default or matches user form input -->
+												{% for boost in ['Full', 'Partial', 'None'] %} 
+													<!-- if the boost amount matches the form data put by the user (or the default) then set that dropdown to selected so is visible -->
+													{% if boost == formData.Defense %}
+														<option selected>{{boost}}</option>
+													<!-- else create the drop down option, but do not have it selected -->
+													{% else %}
+														<option>{{boost}}</option>
+													{% endif %}
+												{% endfor %}
 											</select>
 										</div>
 										<span class="focus-input100"></span>
@@ -131,9 +145,19 @@
 										<span class="label-input100">Boost Factor&trade;: Over/Under Line</span>
 										<div>
 											<select class="selection-2" name="OverUnder">
-												<option>Full</option>
+												<!-- dynamically create drop down options, where the originally selected option is the default or matches user form input -->
+												{% for boost in ['Full', 'Partial', 'None'] %} 
+													<!-- if the boost amount matches the form data put by the user (or the default) then set that dropdown to selected so is visible -->
+													{% if boost == formData.OverUnder %}
+														<option selected>{{boost}}</option>
+													<!-- else create the drop down option, but do not have it selected -->
+													{% else %}
+														<option>{{boost}}</option>
+													{% endif %}
+												{% endfor %}
+												<!-- <option>Full</option>
 												<option>Partial</option>
-												<option>None</option>
+												<option>None</option> -->
 											</select>
 										</div>
 										<span class="focus-input100"></span>
@@ -143,9 +167,16 @@
 										<span class="label-input100">Boost Factor&trade;: Twitter Sentiment</span>
 										<div>
 											<select class="selection-2" name="Twitter">
-												<option>Full</option>
-												<option>Partial</option>
-												<option>None</option>
+												<!-- dynamically create drop down options, where the originally selected option is the default or matches user form input -->
+												{% for boost in ['Full', 'Partial', 'None'] %} 
+													<!-- if the boost amount matches the form data put by the user (or the default) then set that dropdown to selected so is visible -->
+													{% if boost == formData.Twitter %}
+														<option selected>{{boost}}</option>
+													<!-- else create the drop down option, but do not have it selected -->
+													{% else %}
+														<option>{{boost}}</option>
+													{% endif %}
+												{% endfor %}
 											</select>
 										</div>
 										<span class="focus-input100"></span>
