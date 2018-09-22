@@ -228,24 +228,27 @@ def input():
 # Zach
 @app.route("/compare/<week>", methods=['POST', 'GET'])
 def getCharts(week):
-    #get week 1 projections & actuals
-    stmt = "SELECT * FROM week{}_ppr_projections".format(week)
-    df_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
+    #get week <week> projections & actuals
+    stmt_proj = "SELECT * FROM week{}_ppr_projections".format(week)
+    df_ppr_projections = pd.read_sql_query(stmt_proj, db.session.bind)
 
-    stmt = "SELECT * FROM week{}_ppr_actuals".format(week)
-    df_ppr_actuals = pd.read_sql_query(stmt, db.session.bind)
+    stmt_actual = "SELECT * FROM week{}_ppr_actuals".format(week)
+    df_ppr_actuals = pd.read_sql_query(stmt_actual, db.session.bind)
 
     #merge starting with the actuals db and merge inner (don't want to evaluate correlations of players not in db)
-    df_week1_ppr = pd.merge(df_ppr_actuals, df_ppr_projections[['PLAYER', 'POS',
+    df_ppr = pd.merge(df_ppr_actuals, df_ppr_projections[['PLAYER', 'POS',
                                                 'FPTS_PPR_ESPN', 'FPTS_PPR_CBS', 'FPTS_PPR_SHARKS',
                                                 'FPTS_PPR_SCOUT', 'FPTS_PPR_PRVS_WK_ACTUAL']],
                         how='inner', on=['PLAYER', 'POS'])
 
     #average all four of our projection sources of ESPN, CBS, Sharks, and Scout
-    df_week1_ppr['FPTS_PPR_AVG_PROJ'] = df_week1_ppr[['FPTS_PPR_ESPN','FPTS_PPR_CBS',
-                                                  'FPTS_PPR_SHARKS', 'FPTS_PPR_SCOUT']].mean(axis='columns')
-    json_ppr_proj = df_week1_ppr.to_dict('records')
-    return jsonify(json_ppr_proj)
+    df_ppr['FPTS_PPR_AVG_PROJ'] = df_ppr[['FPTS_PPR_ESPN','FPTS_PPR_CBS',
+                                    'FPTS_PPR_SHARKS', 'FPTS_PPR_SCOUT']].mean(axis='columns')
+   
+   
+    json_ppr = df_ppr.to_dict('records')
+
+    return jsonify(json_ppr)
 
 
 
