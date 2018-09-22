@@ -313,29 +313,6 @@ def input():
         return render_template("input.html", tableData=userTableData, formData=request.form)
 
 
-
-
-# @app.route("/input/test") #?Week=<week>&ESPN=<espn_wt>&CBS=<cbs_wt>&Sharks=<sharks_wt>&Scout=<scout_wt>&Prior=<prior_wt>&Defense=<def_boost>&OverUnder=<overunder_boost>&Twitter=<twitter_boost>&message=<msg_text>")
-# def calculate_custom_factors():
-#     #get current week projections
-#     stmt = """
-#     SELECT *
-#     FROM week3_ppr_projections
-#     """
-#     df_proj = pd.read_sql_query(stmt, db.session.bind)
-
-
-#     #export df as json - orient='records' gives a json string that is a list of dictionaries, 
-#     # one dictionary for each row in df with column as keys and row values as values
-#     #also need to use python's json.loads function to create it to a real json and not string object
-#     json_proj = json.loads(df_proj.to_json(orient='records'))
-
-#     print(json_proj)
-#     print(type(json_proj))
-#     return render_template("input.html", jsonUser=jsonify(json_proj))
-
-
-
 # Zach
 @app.route("/compare/<week>", methods=['POST', 'GET'])
 def getCharts(week):
@@ -360,18 +337,6 @@ def getCharts(week):
     json_ppr = df_ppr.to_dict('records')
 
     return jsonify(json_ppr)
-
-
-
-# @app.route("/compare/<week>", methods=['POST', 'GET'])
-# def getCharts(week):
-#     #get week 1 projections
-#     stmt = "SELECT * FROM week{}_ppr_projections".format(week)
-
-#     df_ppr_projections = pd.read_sql_query(stmt, db.session.bind)
-#     json_proj = df_ppr_projections.to_dict('records')
-#     return jsonify(json_proj)
-
 
 
 @app.route("/compare", methods=['POST', 'GET'])
@@ -411,29 +376,5 @@ if __name__ == '__main__':
    app.run(debug = True)
 
 
-
-
-# from flask import Flask, render_template, request
-# import sqlite3 as sql
-# app = Flask(__name__)
-
-
-# @app.route('/')
-# def home():
-#    return render_template('home.html')
-
-# @app.route('/list')
-# def list():
-#    con = sql.connect("my_lite_store.db")
-#    con.row_factory = sql.Row
-   
-#    cur = con.cursor()
-#    cur.execute("select * from actual_ppr")
-   
-#    rows = cur.fetchall()
-#    return render_template("list.html",rows = rows)
-
-# if __name__ == '__main__':
-#    app.run(debug = True)
 
 
