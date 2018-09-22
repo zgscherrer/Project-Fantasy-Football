@@ -141,8 +141,19 @@ def tweet():
 @app.route("/input", methods=['POST', 'GET'])
 def input():
     if request.method == "GET":
-        # Return an initial blank form before user inputs their custom factors
-        return render_template("input.html")
+        # Return an initial blank data page before user inputs their custom factors
+        #have the default values populate as 20% for each one and Full for each boost
+        defaultInputs = {'Week': '3',
+                        'ESPN': '20',
+                        'CBS': '20',
+                        'Sharks': '20',
+                        'Scout': '20',
+                        'Prior': '20',
+                        'Defense': 'Full',
+                        'OverUnder': 'Full',
+                        'Twitter': 'Full'}
+
+        return render_template("input.html", formData=defaultInputs)
         
     elif request.method == "POST":
         # use the user input to operate on the dataframe and then a list of dictionaries (records) that can be referenced in the html
@@ -182,7 +193,11 @@ def input():
 
         #send dataframe to records (a list of dictionaries for each row)
         userTableData = df_proj.to_dict('records')
-        return render_template("input.html", tableData=userTableData)
+
+        #render input.html template, return tableData that can build table of the data with user specified calculations, 
+        #and return the original userinputs so that can populate those in the input fields so user can see what inputs
+        #were being used for the calculations they are seeing
+        return render_template("input.html", tableData=userTableData, formData=request.form)
 
 
 
