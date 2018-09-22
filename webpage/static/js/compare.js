@@ -76,11 +76,190 @@ function optionChanged(week) {
     
     Plotly.newPlot("espn-accuracy", dataEspn, layout);
 
+
+    // SHARKS! SHARKS! SHARKS! SHARKS! SHARKS!
+    var xSharksPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SHARKS)
+    console.log(xSharksPPR)
+
+    var traceSharks = {
+      x: xSharksPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
     
+    var sharksLayout = {
+      title: `Week ${week} Actual PPRs vs Sharks Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Sharks PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
     
+    var dataSharks = [traceSharks]   //[traceEspn, traceEspnBestFit]
     
+    Plotly.newPlot("sharks-accuracy", dataSharks, sharksLayout);
     
+
+
+    // CBS! CBS! CBS! CBS! CBS! CBS! CBS! CBS! CBS!
+
+    var xCbsPPR = weekData.map(playerDict => playerDict.FPTS_PPR_CBS)
+    console.log(xCbsPPR)
+
+    var traceCbs = {
+      x: xCbsPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
     
+    var cbsLayout = {
+      title: `Week ${week} Actual PPRs vs CBS Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'CBS PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
+    
+    var dataCbs = [traceCbs]   //[traceEspn, traceEspnBestFit]
+    
+    Plotly.newPlot("cbs-accuracy", dataCbs, cbsLayout);
+
+
+    // SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS! SCOUTS!
+    var xScoutPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SCOUT)
+    console.log(xScoutPPR)
+
+    var traceScout = {
+      x: xScoutPPR,
+      y: yActualPPR,
+      mode:   'markers',
+      marker: {color: 'rgb(255, 127, 14)',
+              name: 'data'}
+    };
+    
+    var scoutLayout = {
+      title: `Week ${week} Actual PPRs vs Scout Projections`,
+
+      xaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Scout PPR Projected Points'},
+       yaxis: {zerolinecolor: 'rgb(255,255,255)',
+               gridcolor: 'rgb(255,255,255)',
+              title: 'Actual PPR Points'},
+      };
+    
+    var dataScout = [traceScout]   //[traceEspn, traceEspnBestFit]
+    
+    Plotly.newPlot("scout-accuracy", dataScout, scoutLayout);
+
+
+    // LINE GRAPHS 
+    // // ERROR CHART! ERROR CHART! ERROR CHART! ERROR CHART!
+    // var errorScoutPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SCOUT)
+    // var errorEspnPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ESPN)
+    // var errorCbsPPR = weekData.map(playerDict => playerDict.FPTS_PPR_CBS)
+    // var errorSharkPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SHARKS)
+    // var errorActualPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ACTUAL)
+
+
+    // var errorTrace1 = {
+    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+    //   y: [errorEspnPPR, errorCbsPPR, errorScoutPPR, errorSharkPPR],
+    //   name: 'Projected',
+    //   error_y: {
+    //     type: 'percent',
+    //     value: 50,
+    //     visible: true
+    //   },
+    //   type: 'bar'
+    // };
+    // var errorTrace2 = {
+    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+    //   y: [errorActualPPR, errorActualPPR, errorActualPPR, errorActualPPR],
+    //   name: 'Actual',
+    //   error_y: {
+    //     type: 'percent',
+    //     value: 50,
+    //     visible: true
+    //   },
+    //   type: 'bar'
+    // };
+    // var errorData = [errorTrace1, errorTrace2];
+    // var errorLayout = {barmode: 'group'};
+    // Plotly.newPlot('error-chart', errorData, errorLayout);
+
+    // SAMPLE
+    // var espnLineTrace = {
+    //   x: errorEspnPPR, 
+    //   y: errorEspnPPR, 
+    //   type: 'scatter'
+    // };
+    // var actualLineTrace = {
+    //   x: [], 
+    //   y: errorActualPPR, 
+    //   type: 'scatter'
+    // };
+    // var errorData = [espnLineTrace, actualLineTrace];
+    
+    // var layout1 = {
+    //   yaxis: {rangemode: 'tozero',
+    //           showline: true,
+    //           zeroline: true}
+    // };
+    
+    // var layout2 = {
+    //   yaxis: {rangemode: 'tozero',
+    //           zeroline: true}
+    // };
+    
+    // Plotly.newPlot('error-chart', errorData, layout1);
+    
+    // Plotly.newPlot('error-chart', data, layout2);
+
+    // // ERROR CHART! ERROR CHART! ERROR CHART! ERROR CHART!
+    // var errorScoutPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SCOUT)
+    // var errorEspnPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ESPN)
+    // var errorCbsPPR = weekData.map(playerDict => playerDict.FPTS_PPR_CBS)
+    // var errorSharkPPR = weekData.map(playerDict => playerDict.FPTS_PPR_SHARKS)
+    // var errorActualPPR = weekData.map(playerDict => playerDict.FPTS_PPR_ACTUAL)
+
+
+    // var errorTrace1 = {
+    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+    //   y: [errorEspnPPR, errorCbsPPR, errorScoutPPR, errorSharkPPR],
+    //   name: 'Projected',
+    //   error_y: {
+    //     type: 'percent',
+    //     value: 50,
+    //     visible: true
+    //   },
+    //   type: 'bar'
+    // };
+    // var errorTrace2 = {
+    //   x: ['ESPN', 'CBS', 'Scout', 'Shark'],
+    //   y: [errorActualPPR, errorActualPPR, errorActualPPR, errorActualPPR],
+    //   name: 'Actual',
+    //   error_y: {
+    //     type: 'percent',
+    //     value: 50,
+    //     visible: true
+    //   },
+    //   type: 'bar'
+    // };
+    // var errorData = [errorTrace1, errorTrace2];
+    // var errorLayout = {barmode: 'group'};
+    // Plotly.newPlot('error-chart', errorData, errorLayout);
+
     // yActualPpr = weekData[0].FPTS_PPR_ACTUAL;
     // // console.log(yActualPpr)
     // xActualPpr = weekData[0].FPTS_PPR_ESPN;
