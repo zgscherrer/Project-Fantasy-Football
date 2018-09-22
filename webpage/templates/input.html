@@ -8,7 +8,13 @@
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}"> -->
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/datatables.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='scss/_datatables.scss') }}"> -->
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 	<!--===============================================================================================-->
@@ -21,10 +27,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
 	<!--===============================================================================================-->
 	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css') }}"> -->
-	<!--===============================================================================================-->
+	<!-- ===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-	<!--===============================================================================================-->
+	<!--=============================================================================================== -->
 
 	<!-- load up d3 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
@@ -52,7 +58,7 @@
 			<div class="col-lg-3">
 
 				<!-- Select your Factors Form -->
-				<div class="container-contact100">
+				<div class="container-contact100"  id="input-container">
 					<div class="wrap-contact100">
 						<div class="span2">
 							<div class="float">
@@ -242,17 +248,44 @@
 								<span class="contact100-form-title">Customized Player Rankings
 								</span>
 
-								<table id="data-table" class="table table-striped">
+								<!-- add some custom css styling for table to get scrolling, etc. to work -->
+								<style> 
+								.dtHorizontalVerticalExampleWrapper {
+									/* max-width: 600px; */
+									margin: 0 auto;
+								}
+								#dtHorizontalVerticalExample th, td {
+									white-space: nowrap;
+								}
+
+								.table-head {
+									max-width:125px;
+									font-weight: bold;
+									/* word-break: break-all; */
+									word-wrap:break-word;
+								}
+
+								</style>
+
+
+
+								<table id="dtHorizontalVerticalExample" class="table table-striped dtHorizontalVerticalExampleWrapper">
 									<thead>
 										<tr>
 											<th class="table-head">Player</th>
-											<th class="table-head">Pos</th>
+											<th class="table-head">Position</th>
 											<th class="table-head">Team</th>
+											<th class="table-head">S-Rank Custom Projection</th>
+											<th class="table-head">Details >></th> <!-- blank column as separator from key info and added data-->
+											<th class="table-head">User Weighted Projection</th>
+											<th class="table-head">User Opposing Defense Boost</th>
+											<th class="table-head">User Over Under Boost</th>
+											<th class="table-head">User Twitter Boost</th>
 											<th class="table-head">ESPN Projection</th>
 											<th class="table-head">CBS Projection</th>
 											<th class="table-head">Sharks Projection</th>
 											<th class="table-head">Scout Projection</th>
-											<th class="table-head">S-Rank Custom Weighted Projection</th>
+											<th class="table-head">Previous Week</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -261,15 +294,22 @@
 												<td>{{player_dict.PLAYER}}</td>
 												<td>{{player_dict.POS}}</td>
 												<td>{{player_dict.TEAM}}</td>
+												<td>{{player_dict.FPTS_PPR_CUSTOM_AVG_BOOST}}</td>
+												<td> </td>
+												<td>{{player_dict.FPTS_PPR_CUSTOM_AVG}}</td>
+												<td>{{player_dict.OPPOSING_DEFENSE_BOOST}}</td>
+												<td>{{player_dict.OVER_UNDER_BOOST}}</td>
+												<td>{{player_dict.TWITTER_BOOST}}</td>
 												<td>{{player_dict.FPTS_PPR_ESPN}}</td>
 												<td>{{player_dict.FPTS_PPR_CBS}}</td>
 												<td>{{player_dict.FPTS_PPR_SHARKS}}</td>
 												<td>{{player_dict.FPTS_PPR_SCOUT}}</td>
-												<td>{{player_dict.FPTS_PPR_CUSTOM_AVG}}</td>
+												<td>{{player_dict.FPTS_PPR_PRVS_WK_ACTUAL}}</td>											
 											</tr>
 										{% endfor %}
 									</tbody>
 								</table>
+							
 							</div>
 						</div>
 					</div>
@@ -290,8 +330,20 @@
 	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js') }}"></script>
 	<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+	<!-- <script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+	
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script> -->
+	
+	<!-- from MDB for table scrolling -->
+	<!-- JQuery
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/datatables.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
 	<script>
